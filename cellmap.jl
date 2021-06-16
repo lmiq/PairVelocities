@@ -45,7 +45,7 @@ function florpi(;N=100_000,cd=true)
 
   println(" constant density = ", cd)
   if cd
-    density = 10^4/250^3  # density of the original problem
+    density = 10^5/250^3  # density of the original problem
     boxsize = (n_halos / density)^(1/3)
   else
     boxsize = 250.
