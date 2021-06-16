@@ -10,8 +10,8 @@ using BenchmarkTools
 @inline dot(x::SVector{3,Float64},y::SVector{3,Float64}) = x[1]*y[1] + x[2]*y[2] + x[3]*y[3]
 
 function compute_pairwise_mean_cell_lists!(x,y,i,j,d2,hist,velocities, rbins,sides)
-    d = x - y
-    r = sqrt(d2)
+    d = x - y  # x and y are already wrapped
+    r = sqrt(d2)  # d2 is the square of their distance
     ibin = searchsortedfirst(rbins, r) - 1
     hist[1][ibin] += 1
     hist[2][ibin] += dot(velocities[i]-velocities[j],d)/r
