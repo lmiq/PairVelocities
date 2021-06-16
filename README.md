@@ -8,6 +8,8 @@ Current conclusions:
 
 2. The algorithm for pairwise distances of `halotools` runs over less pairs than the `CellListMap.jl`, thus it scales better if the density increases. 
 
+(the Julia test being run here is: https://github.com/m3g/CellListMap.jl/blob/7940ab60f3c3ed2f98c627a184e3a7a255738571/src/examples.jl#L416)
+
 
 ![image](https://user-images.githubusercontent.com/31046348/122289175-c9d6a300-cec8-11eb-86af-dbca257cb3a3.png)
 
