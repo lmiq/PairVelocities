@@ -2,9 +2,9 @@
 
 Code to compute pairwise velocity distributions for cosmological simulations
 
-![image](https://user-images.githubusercontent.com/31046348/122285973-be35ad00-cec5-11eb-9543-1b9c5047612b.png)
+![image](https://user-images.githubusercontent.com/31046348/122289175-c9d6a300-cec8-11eb-86af-dbca257cb3a3.png)
 
+![image](https://user-images.githubusercontent.com/31046348/122289339-fab6d800-cec8-11eb-8b2e-b3d38456fb4e.png)
 
-![image](https://user-images.githubusercontent.com/31046348/122285818-8af31e00-cec5-11eb-90fd-70ccb9b7d839.png)
-
+Take away: currently `CellListMap.jl` scales better for larger systems if density remains constant, while `halotools` is faster greater densities.
 
