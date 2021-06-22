@@ -3,18 +3,18 @@ import time
 import sys
 from halotools.mock_observables import mean_radial_velocity_vs_r
 
-n_threads = 8
+n_threads = 32 
 rbins = list(np.arange(0.,201.,20.))
 print(rbins)
 boxsize = 2000.
 Lbox = [boxsize,boxsize, boxsize]
 
-N = 8_000_000
+N = 1_000_000
 
 print("Reading positions...")
-positions = np.loadtxt("~/Downloads/data_enrique/pos.dat",max_rows=N)
+positions = np.loadtxt("/home/leandro/Downloads/data_enrique/pos.dat",max_rows=N)
 print("Reading velocities...")
-velocities = np.loadtxt("~/Downloads/data_enrique/vel.dat",max_rows=N)
+velocities = np.loadtxt("/home/leandro/Downloads/data_enrique/vel.dat",max_rows=N)
 
 print("Computing histogram...")
 t0 = time.time()

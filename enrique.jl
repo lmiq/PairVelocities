@@ -1,19 +1,22 @@
+using StaticArrays
 using CellListMap
 
-function readdata()
+function readdata(N)
   println("Reading positions...")
-  file = open("~/Downloads/data_enrique/pos.dat","r") 
-  positions = SVector{3,Float64}[]
-  for line in eachline(file)
-    push!(positions,SVector{3,Float64}(parse.(Float64,split(line))))
+  file = open("/home/leandro/Downloads/data_enrique/pos.dat","r") 
+  positions = Vector{SVector{3,Float64}}(undef,N)
+  for i in 1:N
+    line = readline(file)
+    positions[i] = SVector{3,Float64}(parse.(Float64,split(line))) 
   end
   close(file)
   
   println("Reading velocities...")
-  file = open("~/Downloads/data_enrique/vel.dat","r") 
-  velocities= SVector{3,Float64}[]
-  for line in eachline(file)
-    push!(velocities,SVector{3,Float64}(parse.(Float64,split(line))))
+  file = open("/home/leandro/Downloads/data_enrique/vel.dat","r") 
+  velocities= Vector{SVector{3,Float64}}(undef,N)
+  for i in 1:N
+    line = readline(file)
+    velocities[i] = SVector{3,Float64}(parse.(Float64,split(line))) 
   end
   close(file)
   return positions,velocities
@@ -46,15 +49,11 @@ function compute_mean(
     return hist
   end
 
-  N = 8_000_000
-  pos = @view(positions[1:N])
-  vel = @view(velocities[1:N])
-  
   println("Building lists...")
   lbox = [2000,2000,2000]
   cutoff = 200
   box = Box(lbox,cutoff,lcell=lcell)
-  cl = CellList(pos,box)
+  cl = CellList(positions,box)
 
   rbins = 0.:20.:200.
   hist = (zeros(Int,length(rbins)-1), zeros(Float64,length(rbins)-1))      
@@ -62,7 +61,7 @@ function compute_mean(
   println("Computing histogram...")
   hist = map_pairwise!(
     (x,y,i,j,d2,hist) -> compute_pairwise_mean_cell_lists!(
-      x,y,i,j,d2,hist,vel,rbins,lbox
+      x,y,i,j,d2,hist,velocities,rbins,lbox
     ),
     hist, box, cl,
     reduce=reduce_hist,
@@ -77,10 +76,14 @@ function compute_mean(
 
 end
 
+positions, velocities = readdata(8_000_000)
 
-
-
-
-
-
-
+@time r = compute_mean(
+  positions,velocities;
+  parallel=true,
+  show_progress=true,
+  lcell=5
+)
+for v in r
+  println(v)
+end
