@@ -8,20 +8,20 @@ Current benchmarks:
 
 ### Version 0.4.6
 
-![image](./cd_v0.4.6.png)
+![image](./data/cd_v0.4.6.png)
 
-![image](./cv_v0.4.6.png)
+![image](./data/cv_v0.4.6.png)
 
 ### Version 0.4.5
 
-![image](./cd_v0.4.5.png)
+![image](./data/cd_v0.4.5.png)
 
-![image](./cv_v0.4.5.png)
+![image](./data/cv_v0.4.5.png)
 
 ### Version 0.4.3
 
-![image](./cd_v0.4.3.png)
+![image](./data/cd_v0.4.3.png)
 
-![image](./cv_v0.4.3.png)
+![image](./data/cv_v0.4.3.png)
 
 

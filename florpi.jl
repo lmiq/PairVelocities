@@ -38,11 +38,12 @@ println(" Version: v$version ")
 #
 # CD
 #
-previous_cd = sort!(filter(x -> occursin("cd",x) && occursin(".dat",x),readdir()))[end]
+previous_cd = sort!(filter(x -> occursin("cd",x) && occursin(".dat",x),readdir("./data")))[end]
 previous_version = previous_cd[5:9] 
 if previous_version == "$version"
-  previous_cd = sort!(filter(x -> occursin("cd",x) && occursin(".dat",x),readdir()))[end-1]
+  previous_cd = sort!(filter(x -> occursin("cd",x) && occursin(".dat",x),readdir("./data")))[end-1]
 end
+previous_cd = "./data/"*previous_cd
 
 data_cd = readdlm(previous_cd,comments=true,comment_char='#')
 println(" Previous: $previous_cd ")
@@ -74,26 +75,27 @@ data_cd[:,5] .= times2
 
 default(fontfamily="Computer Modern",label="",linewidth=2,framestyle=:box,legend=:topleft,margin=5mm)
 data = data_cd
-plot(data[:,1],data[:,2],label="Serial/halotools")
-plot!(data[:,1],data[:,3],label="4 cores/halotools")
+plot(data[:,1],data[:,2],label="Serial/halotools v0.7")
+plot!(data[:,1],data[:,3],label="4 cores/halotools v0.7")
 plot!(data[:,1],data[:,4],label="Serial/CellListMap.jl $version")
 plot!(data[:,1],data[:,5],label="4 cores/CellListMap.jl $version")
 plot!(xlabel="Number or particles",ylabel="time / s")
 plot!(title=L"\textrm{Constant\ density - \rho=(10^5/250^3) N/V;\ cutoff = 10}")
-savefig("./cd_v$version.png")
-writedlm("./cd_v$version.dat",data)
+savefig("./data/cd_v$version.png")
+writedlm("./data/cd_v$version.dat",data)
 
-println("created ./cd_v$version.png")
-println("wrote ./cd_v$version.dat")
+println("created ./data/cd_v$version.png")
+println("wrote ./data/cd_v$version.dat")
 
 #
 # CV
 #
-previous_cv = sort!(filter(x -> occursin("cv",x) && occursin(".dat",x),readdir()))[end]
+previous_cv = sort!(filter(x -> occursin("cv",x) && occursin(".dat",x),readdir("./data")))[end]
 previous_version = previous_cv[5:9] 
 if previous_version == "$version"
-  previous_cv = sort!(filter(x -> occursin("cv",x) && occursin(".dat",x),readdir()))[end-1]
+  previous_cv = sort!(filter(x -> occursin("cv",x) && occursin(".dat",x),readdir("./data")))[end-1]
 end
+previous_cv = "./data/"*previous_cv
 data_cv = readdlm(previous_cv,comments=true,comment_char='#')
 println(" Previous: $previous_cv ")
 
@@ -124,17 +126,17 @@ data_cv[:,4] .= times3
 data_cv[:,5] .= times4
 
 data = data_cv
-plot(data[:,1],data[:,2],label="Serial/halotools")
-plot!(data[:,1],data[:,3],label="4 cores/halotools")
+plot(data[:,1],data[:,2],label="Serial/halotools v0.7")
+plot!(data[:,1],data[:,3],label="4 cores/halotools v0.7")
 plot!(data[:,1],data[:,4],label="Serial/CellListMap.jl $version")
 plot!(data[:,1],data[:,5],label="4 cores/CellListMap.jl $version")
 plot!(xlabel="Number or particles",ylabel="time / s")
 plot!(title=L"\textrm{Constant\ volume - V=250^3;\ cutoff = 10}")
-savefig("./cv_v$version.png")
-writedlm("./cv_v$version.dat",data)
+savefig("./data/cv_v$version.png")
+writedlm("./data/cv_v$version.dat",data)
 
-println("created ./cv_v$version.png")
-println("wrote ./cv_v$version.dat")
+println("created ./data/cv_v$version.png")
+println("wrote ./data/cv_v$version.dat")
 
 
 
