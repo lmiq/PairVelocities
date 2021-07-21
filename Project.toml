@@ -1,7 +1,0 @@
-name = "PairwiseVelocities"
-uuid = "3c991dec-9c56-4f58-9859-82b65299ade1"
-authors = ["florpi <florpisoteadadejardin@gmail.com>"]
-version = "0.1.0"
-
-[deps]
-CellListMap = "69e1c6dd-3888-40e6-b3c8-31ac5f578864"
