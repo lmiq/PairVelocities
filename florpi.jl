@@ -4,7 +4,7 @@ using Plots, Plots.Measures
 using DelimitedFiles
 using LaTeXStrings
 
-function run_benchmark(output=false)
+function run_benchmark(output=false,last=10_000_000)
 
   if Threads.nthreads() != 8 
     error(" Run with julia -t auto ")
@@ -32,6 +32,8 @@ function run_benchmark(output=false)
           8000000
           9000000
           10000000 ]
+
+  ilast = findfirst(isequal(last),ns)
   
   version=filter(x-> x.second.name == "CellListMap", Pkg.dependencies()) |> x -> first(x)[2].version
   
@@ -71,7 +73,7 @@ function run_benchmark(output=false)
   #
   println("Parallel, constant volume:")
   CellListMap.florpi(N=1000,cd=false,parallel=true);
-  for i in 1:length(ns)
+  for i in 1:ilast
     n = ns[i]
     prev = try data_cv[i,5] catch; 0 end
     t = @elapsed CellListMap.florpi(N=n,cd=false,parallel=true);
@@ -81,7 +83,7 @@ function run_benchmark(output=false)
   
   println("Parallel, constant density:")
   CellListMap.florpi(N=1000,cd=true,parallel=true);
-  for i in 1:length(ns)
+  for i in 1:ilast
     n = ns[i]
     prev = try data_cd[i,5] catch; 0 end
     t = @elapsed CellListMap.florpi(N=n,cd=true,parallel=true);
@@ -94,7 +96,7 @@ function run_benchmark(output=false)
   #
   println("Serial, constant density:")
   CellListMap.florpi(N=1000,cd=true,parallel=false);
-  for i in 1:length(ns)
+  for i in 1:ilast
     n = ns[i]
     prev = try data_cd[i,4] catch; 0 end
     t = @elapsed CellListMap.florpi(N=n,cd=true,parallel=false);
@@ -104,7 +106,7 @@ function run_benchmark(output=false)
   
   println("Serial, constant volume:")
   CellListMap.florpi(N=1000,cd=false,parallel=false);
-  for i in 1:length(ns)
+  for i in 1:ilast
     n = ns[i]
     prev = try data_cv[i,4] catch; 0 end
     t = @elapsed CellListMap.florpi(N=n,cd=false,parallel=false);
@@ -115,7 +117,7 @@ function run_benchmark(output=false)
   if output
     writedlm("./data/cd_v$version.dat",new_cd)
     writedlm("./data/cd_v$version.dat",new_cv)
-    plot_florpi($version)
+    plot_florpi("$version")
   end
 
 end
