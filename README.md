@@ -8,6 +8,12 @@ Current benchmarks:
 
 ### Version 0.5.1
 
+![image](./data/cd_v0.5.2.png)
+
+![image](./data/cv_v0.5.2.png)
+
+### Version 0.5.1
+
 ![image](./data/cd_v0.5.1.png)
 
 ![image](./data/cv_v0.5.1.png)

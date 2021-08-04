@@ -76,8 +76,17 @@ function compute_mean(
 
 end
 
-positions, velocities = readdata(8_000_000)
+println("Compiling...")
+positions, velocities = readdata(1_000)
+@time r = compute_mean(
+  positions,velocities;
+  parallel=true,
+  show_progress=true,
+  lcell=5
+)
 
+println("Actual run...")
+positions, velocities = readdata(8_000_000)
 @time r = compute_mean(
   positions,velocities;
   parallel=true,
