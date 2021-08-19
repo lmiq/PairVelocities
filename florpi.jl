@@ -3,6 +3,7 @@ using CellListMap
 using Plots, Plots.Measures
 using DelimitedFiles
 using LaTeXStrings
+using BenchmarkTools
 
 function plot_florpi(version,output=false)
 
@@ -114,7 +115,7 @@ function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000)
   for i in 1:ilast_cv
     n = ns[i]
     prev = try data_cv[i,5] catch; 0 end
-    t = @elapsed CellListMap.florpi(N=n,cd=false,parallel=true);
+    t = @belapsed CellListMap.florpi(N=$n,cd=false,parallel=true);
     new_cv[i,5] = t
     println(n," ",t," prev ", prev)
   end
@@ -124,7 +125,7 @@ function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000)
   for i in 1:ilast_cd
     n = ns[i]
     prev = try data_cd[i,5] catch; 0 end
-    t = @elapsed CellListMap.florpi(N=n,cd=true,parallel=true);
+    t = @belapsed CellListMap.florpi(N=$n,cd=true,parallel=true);
     new_cd[i,5] = t
     println(n," ",t," prev ", prev)
   end
@@ -137,7 +138,7 @@ function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000)
   for i in 1:ilast_cd
     n = ns[i]
     prev = try data_cd[i,4] catch; 0 end
-    t = @elapsed CellListMap.florpi(N=n,cd=true,parallel=false);
+    t = @belapsed CellListMap.florpi(N=$n,cd=true,parallel=false);
     new_cd[i,4] = t
     println(n," ",t," prev ", prev)
   end
@@ -147,7 +148,7 @@ function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000)
   for i in 1:ilast_cv
     n = ns[i]
     prev = try data_cv[i,4] catch; 0 end
-    t = @elapsed CellListMap.florpi(N=n,cd=false,parallel=false);
+    t = @belapsed CellListMap.florpi(N=$n,cd=false,parallel=false);
     new_cv[i,4] = t
     println(n," ",t," prev ", prev)
   end
