@@ -1,0 +1,67 @@
+package require psfgen
+topology /home/leandro/programs/toppar/charmm/top_all36_prot.rtf
+topology /home/leandro/programs/toppar/charmm/toppar_water_ions.str
+topology /home/leandro/programs/toppar/charmm/top_all36_carb.rtf
+topology /home/leandro/programs/toppar/charmm/top_all36_cgenff.rtf
+topology ./azulenyl/azulenyl.top
+
+#foreach i { 2 3 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 } {
+foreach i { 9 } {
+
+  puts "---------------------------------------------------------------"
+  puts "$i"
+  puts "---------------------------------------------------------------"
+  
+  mol new ./bba5-azl$i-solvated.pdb
+  set protein [ atomselect top "segname BBA5" ]
+  $protein writepdb protein.pdb
+  
+  set water [ atomselect top water ]
+  $water writepdb water.pdb
+
+  segment BBA5 { 
+    first ACE
+    last CT2
+    pdb protein.pdb
+  }
+
+  segment WAT {
+    auto none
+    pdb water.pdb
+  }
+  
+  coordpdb protein.pdb BBA5
+  coordpdb water.pdb WAT
+  guesscoord
+  
+  writepsf bba5-azl$i-solvated-ready.psf
+  writepdb bba5-azl$i-solvated-ready.pdb
+  
+  mol delete top
+  
+  mol new ./bba5-azl$i-solvated-ready.pdb
+  
+  set sel [ atomselect top protein ]
+  $sel set beta 0
+  $sel set occupancy 0
+  set cas [ atomselect top "name CA" ]
+  $cas set beta 1
+  set all [ atomselect top all ]
+  $all writepdb fixedCA-solvated$i.pdb
+  
+  $all delete
+  $sel delete
+  $cas delete
+  mol delete top
+
+  puts "---------------------------------------------------------------"
+  puts "END $i"
+  puts "---------------------------------------------------------------"
+  resetpsf
+
+}
+quit
+
+
+
+ 

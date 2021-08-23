@@ -1,0 +1,18 @@
+package require psfgen
+topology ./top_bms_dec03.inp
+
+mol new ./triclinic1.pdb
+set Ne  [ atomselect top "name NE" ]
+$Ne writepdb Ne.pdb
+
+segment NE { 
+  pdb Ne.pdb
+}
+
+coordpdb Ne.pdb NE
+
+writepsf triclinic1_ready.psf
+writepdb triclinic1_ready.pdb
+
+exit
+  

@@ -1,7 +1,8 @@
 using CellListMap
 using PDBTools
 
-x = [ 100*rand(3) for i in 1:10_000 ]
+#9999 so we do not require two segments
+x = [ 100*rand(3) for i in 1:9_999 ]
 
 box = Box([ 50. 10.  0.
              0. 50. 20.
@@ -16,15 +17,15 @@ atoms = [ Atom(
             chain="A",
             resnum=i,
             residue=i,
-            name="HE",
-            resname="HE",
+            name="NE",
+            resname="NE",
             x=p[i][1],
             y=p[i][2],
             z=p[i][3],
-            segname="ARGO"
+            segname="NEON"
           ) for i in 1:length(p) ]
 
-writePDB(atoms,"test.pdb")
+writePDB(atoms,"triclinic1.pdb")
 
 
 
