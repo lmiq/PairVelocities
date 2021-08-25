@@ -13,7 +13,7 @@ function lj_NE(d2,u)
 end
 
 function getcoor(file)
-    traj = Chemfiles.Trajectory(file)
+    traj = redirect_stdout(()->Chemfiles.Trajectory(file),devnull)
     frame = Chemfiles.read_step(traj,0)
     return reinterpret(reshape,SVector{3,Float64},Chemfiles.positions(frame))
 end
@@ -52,6 +52,11 @@ unit_cell_matrix = transpose([ 70.7107   0.0      0.0
                                35.3553  20.4124  57.735 ])
 test("./o5.dcd", unit_cell_matrix, 1765.1400)
 
+unit_cell_matrix = [ 80.      0.      0.
+                      0.     80.      0. 
+                      0.      0.     80. ]
+test("./o6.dcd", unit_cell_matrix, -158.0470)
+
 unit_cell_matrix = [ 80.      0.     30.
                      30.     80.      0. 
                       0.     40.     80. ]
@@ -61,3 +66,7 @@ unit_cell_matrix = [ 50.      0.      0.
                      50.     50.      0. 
                       0.     50.     50. ]
 test("./t2.dcd", unit_cell_matrix, 32096.4923)
+
+
+
+
