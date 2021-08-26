@@ -15,7 +15,7 @@ using LinearAlgebra: norm_sqr
     x0::V = getcoor("o6.dcd")  
     temperature::T = 300.
     nsteps::Int = 10_000
-    dt::T = 0.02 # 2 fs ??? should it be 0.002 ? 
+    dt::T = 2.0 # fs
     ibath::Int = 10
     print_energy::Int = 50 
     print_traj::Int = 100
@@ -102,6 +102,12 @@ function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
     @unpack x0, temperature, nsteps, box, dt, ε, σ, mass, kB = params
     trajfile = open(params.trajfile,"w")
 
+    # To use coordinates in Angstroms, dt must be in 10ps. Usually packages
+    # use ps and nm internally (thus multiply coordinates by 10 and divide
+    # the timestep given in fs by 1000)
+    dt = dt/100
+
+    # Initial arrays
     x = copy(x0)
     f = similar(x)
     flast = similar(x)
