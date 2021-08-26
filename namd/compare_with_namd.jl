@@ -15,6 +15,7 @@ end
 function getcoor(file)
     traj = redirect_stdout(()->Chemfiles.Trajectory(file),devnull)
     frame = Chemfiles.read_step(traj,0)
+    Chemfiles.close(traj)
     return reinterpret(reshape,SVector{3,Float64},Chemfiles.positions(frame))
 end
 
@@ -56,6 +57,11 @@ unit_cell_matrix = [ 80.      0.      0.
                       0.     80.      0. 
                       0.      0.     80. ]
 test("./o6.dcd", unit_cell_matrix, -158.0470)
+
+unit_cell_matrix = [ 45.      0.      0.
+                      0.     45.      0. 
+                      0.      0.     45. ]
+test("./o7.dcd", unit_cell_matrix, 132542.1195)
 
 unit_cell_matrix = [ 80.      0.     30.
                      30.     80.      0. 

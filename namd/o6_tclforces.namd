@@ -1,0 +1,63 @@
+
+
+#############################################################
+## ADJUSTABLE PARAMETERS                                   ##
+#############################################################
+
+set system "o6_cont"
+
+structure          ./system_ready.psf
+coordinates        ./system_ready.pdb
+outputName         ./$system
+restartname        ./$system
+restartfreq        20000
+dcdfreq            100
+set temperature    300.
+bincoordinates "./o6.coor"
+
+#############################################################
+## SIMULATION PARAMETERS                                   ##
+#############################################################
+
+# Input
+paraTypeCharmm      on
+parameters ./par_bms_dec03.inp
+ 
+# Force-Field Parameters
+exclude             scaled1-4
+1-4scaling          1.0
+cutoff              10.
+switching           off
+pairlistdist        10
+temperature         $temperature
+
+# Integrator Parameters
+timestep            2.0
+rigidBonds          all 
+nonbondedFreq       1
+stepspercycle       1
+
+# Output
+binaryoutput        yes
+outputEnergies      50
+
+# Periodic boundary conditions
+cellBasisVector1     80.       0.      0.
+cellBasisVector2      0.      80.      0.
+cellBasisVector3      0.       0.     80.
+wrapAll             off
+
+
+# Temperature scaling
+rescaleFreq 10
+rescaleTemp 300.
+
+## Particle-mesh Ewald Sum
+PME                 no
+
+#############################################################
+## EXTRA PARAMETERS                                        ##
+#############################################################
+run 10
+
+

@@ -1,3 +1,4 @@
 [deps]
 Chemfiles = "46823bd8-5fb3-5f92-9aa0-96921f3dd015"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
 Rotations = "6038ab10-8711-5258-84ad-4b1120ba62dc"

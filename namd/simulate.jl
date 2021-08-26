@@ -8,43 +8,43 @@ using Parameters
 using Statistics: mean
 using LinearAlgebra: norm_sqr
 
-# Simulation parameters
+#
+# Simulation setup
+#
 @with_kw struct Params{V,N,T,M,UnitCellType}
     x0::V = getcoor("o6.dcd")  
     temperature::T = 300.
     nsteps::Int = 10_000
-    dt::T = 0.002
+    dt::T = 0.02 # 2 fs ??? should it be 0.002 ? 
     ibath::Int = 10
     print_energy::Int = 50 
-    save_traj::Int = 100
-    trajfile::String = "o1.xyz"
+    print_traj::Int = 100
+    trajfile::String = "traj.xyz"
     cutoff::T = 10.
-    box::Box{UnitCellType,N,T,M} = Box([ 80.      0.      0.
-                                          0.     80.      0. 
-                                          0.      0.     80. ], cutoff)
-end
-
-# function that computes energy and forces
-@fastpow function energy_and_force(x,y,i,j,d2,ε,σ,uf::UF{T,V}) where {T,V}
-    @unpack u, f = uf
-    σ6 = σ^6
-    σ12 = σ6^2
-    d6 = d2^3
-    d12 = d6^2
-    σ12d12 = σ12/d12
-    σ6d6 = σ6/d6 
-    u += ε*( σ12d12 - 2*σ6d6 )
-    r = y - x
-    ∂u∂r = -12*ε*(σ12d12 - σ6d6)*(r/d2)
-    f[i] = f[i] + ∂u∂r 
-    f[j] = f[j] - ∂u∂r 
-    return UF{T,V}(u,f)
+    box::Box{UnitCellType,N,T,M} = Box([ 80., 80., 80. ], cutoff)
+    # Parameters for Neon
+    mass::T = 20.17900 # g/mol 
+    ε::T = 0.0441795 # kcal/mol
+    σ::T = 2*1.64009 # Å
+    kB::T = 0.001985875 # Boltzmann constant kcal / mol K
 end
 
 # Structure that carries both the energy and force vector
 @with_kw struct UF{T,V}
     u::T
     f::V
+end
+
+# function that computes energy and forces
+@fastpow function energy_and_force(x,y,i,j,d2,ε,σ,uf::UF{T,V}) where {T,V}
+    @unpack u, f = uf
+    d = sqrt(d2)
+    u += ε*( σ^12/d^12 - 2*σ^6/d^6 )
+    r = y - x
+    dudr = -12*ε*(σ^12/d^13 - σ^6/d^7)*(r/d)
+    f[i] = f[i] + dudr
+    f[j] = f[j] - dudr
+    return UF(u,f)
 end
 
 # reduction rule for the (u,f) tuple (u, and f are zeroed outside)
@@ -59,8 +59,8 @@ end
 
 # Kinetic energy and temperature 
 compute_kinetic(v::AbstractVector,m) = (m/2)*sum(x -> norm_sqr(x), v)
-compute_temp(kinetic,k,n) = (2/(3k))*kinetic/n
-compute_temp(v::AbstractVector,m,k) = (2/(3k))*compute_kinetic(v,m)/length(v)
+compute_temp(kinetic,kB,n) = 2*kinetic/(3*kB*n)
+compute_temp(v::AbstractVector,m,kB) = 2*compute_kinetic(v,m)/(3*kB*length(v))
 
 # Remove drift from velocities
 function remove_drift!(v)
@@ -68,9 +68,29 @@ function remove_drift!(v)
     v .= v .- Ref(vmean)
 end
 
+# Function to print output data
+function print_data(istep,x,params,u,kinetic,trajfile)
+    @unpack print_energy, print_traj, kB = params
+    if istep%print_energy == 0
+        temp = compute_temp(kinetic,kB,length(x))
+        @printf(
+            "STEP = %8i U = %12.5f K = %12.5f TOT = %12.5f TEMP = %12.5f\n", 
+            istep, u, kinetic, u+kinetic, temp
+        )
+    end
+    if istep%print_traj == 0 && istep > 0
+        println(trajfile,length(x))
+        println(trajfile," step = ", istep)
+        for i in 1:length(x)
+           @printf(trajfile,"Ne %12.5f %12.5f %12.5f\n", ntuple(j -> x[i][j], 3)...)
+        end
+    end
+    return nothing
+end
+
 # Read coordinates from NAMD-DCD file
 function getcoor(file)
-    traj = Chemfiles.Trajectory(file)
+    traj = redirect_stdout(() -> Chemfiles.Trajectory(file), devnull)
     frame = Chemfiles.read_step(traj,0)
     return copy(reinterpret(reshape,SVector{3,Float64},Chemfiles.positions(frame)))
 end
@@ -79,13 +99,8 @@ end
 # Simulation
 #
 function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
-    @unpack x0, temperature, nsteps, box, dt = params
+    @unpack x0, temperature, nsteps, box, dt, ε, σ, mass, kB = params
     trajfile = open(params.trajfile,"w")
-
-    # Parameters for Neon
-    ε = 0.0441795
-    σ = 2*1.64009
-    mass_Ne = 20.17900 # kg/mol
 
     x = copy(x0)
     f = similar(x)
@@ -93,42 +108,47 @@ function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
 
     # Initial velocities
     v = randn(eltype(x),size(x))
+    remove_drift!(v)
     # Adjust average to desidred temperature
-    k = 0.001985875 # Boltzmann constant kcal / mol K
-    t0 = compute_temp(v,mass_Ne,k) 
+    t0 = compute_temp(v,mass,kB) 
     @. v = v * sqrt(temperature/t0)
     # Remove drift
-    remove_drift!(v)
-
-    # preallocate threaded output, since it contains the forces vector
-    uf_threaded = [ UF{T,V}(0.,deepcopy(f)) for _ in 1:nthreads() ]
 
     # Build cell lists for the first time
     cl = CellList(x,box)
 
-    println("Initial temperature = ", compute_temp(v,mass_Ne,k))
-
+    # preallocate threaded output, since it contains the forces vector
     f .= Ref(zeros(eltype(f)))
-    uf = UF{T,V}(0.,f)
+    uf_threaded = [ UF(0.,deepcopy(f)) for _ in 1:nthreads() ]
+    aux = CellListMap.AuxThreaded(cl)
+
+    # Compute energy and forces at initial point
+    uf = UF(0.,f)
     uf = map_pairwise!( 
         (x,y,i,j,d2,output) -> energy_and_force(x,y,i,j,d2,ε,σ,output),
         uf, box, cl, parallel=true,
         reduce=reduceuf,
         output_threaded=uf_threaded
-    )
-    println("Energy at initial point = ", uf.u)
+    ) 
+    u = uf.u
+    kinetic = compute_kinetic(v,mass)
+    print_data(0,x,params,u,kinetic,trajfile)
 
+    # Simulate
     for istep in 1:nsteps
+
+        # Update positions (velocity-verlet)
+        @. x = x + v*dt + 0.5*(f/mass)*dt^2
 
         # Reset energy and forces
         flast .= f
         u = 0.
         f .= Ref(zeros(eltype(f)))
-        uf = UF{T,V}(u,f)
+        uf = UF(u,f)
         @threads for it in 1:nthreads()
            ft = uf_threaded[it].f 
            ft .= Ref(zeros(eltype(f)))
-           uf_threaded[it] = UF{T,V}(0.,ft)
+           uf_threaded[it] = UF(0.,ft)
         end
 
         # Compute energy and forces
@@ -139,42 +159,27 @@ function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
             output_threaded=uf_threaded
         ) 
         u = uf.u
-        kinetic = compute_kinetic(v,mass_Ne)
-
-        if istep%params.print_energy == 0
-            temp = compute_temp(kinetic,k,length(v))
-            @printf(
-                "STEP = %8i U = %12.5f K = %12.5f TOT = %12.5f TEMP = %12.5f\n", 
-                istep, u, kinetic, u+kinetic, temp
-            )
-        end
-
         if u/length(x) > 1e10
             println("Simulation is unstable. ")
-            return
+            return nothing
         end
+         
+        # Update velocities
+        @. v = v + 0.5*((flast + f)/mass)*dt 
 
-        if istep%params.save_traj == 0
-            println(trajfile,length(x))
-            println(trajfile," step = ", istep)
-            for i in 1:length(x)
-               @printf(trajfile,"Ne %12.5f %12.5f %12.5f\n", ntuple(j -> x[i][j], N)...)
-            end
-        end
-
-        # Update positions and velocities (velocity-verlet)
-        @. x = x + v*dt + 0.5*(f/mass_Ne)*dt^2
-        @. v = v + 0.5*(f + flast)*dt 
+        # Print data and output file
+        kinetic = compute_kinetic(v,mass)
+        print_data(istep,x,params,u,kinetic,trajfile)
 
         # Isokinetic bath
         if istep%params.ibath == 0
-            temp = compute_temp(kinetic,k,length(v))
-            @. v = v * (temperature/temp)
+            temp = compute_temp(kinetic,kB,length(v))
             remove_drift!(v)
+            @. v = v * sqrt(temperature/temp)
         end
 
         # Update cell lists
-        cl = UpdateCellList!(x,box,cl)
+        cl = UpdateCellList!(x,box,cl,aux)
 
    end
     close(trajfile)
@@ -183,19 +188,6 @@ end
 
 #params = Params()
 #simulate(params)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

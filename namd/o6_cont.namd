@@ -45,7 +45,7 @@ outputEnergies      50
 cellBasisVector1     80.       0.      0.
 cellBasisVector2      0.      80.      0.
 cellBasisVector3      0.       0.     80.
-wrapAll             on
+wrapAll             off
 
 
 # Temperature scaling
