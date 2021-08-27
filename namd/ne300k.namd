@@ -1,0 +1,68 @@
+
+
+#############################################################
+## ADJUSTABLE PARAMETERS                                   ##
+#############################################################
+
+set system "ne300k"
+set side 144.05129897602086
+
+structure          ./$system.psf
+coordinates        ./$system.pdb
+outputName         ./$system
+restartname        ./$system
+restartfreq        20000
+dcdfreq            11000
+set temperature    298.15
+
+#############################################################
+## SIMULATION PARAMETERS                                   ##
+#############################################################
+
+# Input
+paraTypeCharmm      on
+parameters ./par_bms_dec03.inp
+ 
+# Force-Field Parameters
+exclude             scaled1-4
+1-4scaling          1.0
+cutoff              10.
+switching           off
+switchdist          10.
+pairlistdist        14
+temperature         $temperature
+
+# Integrator Parameters
+timestep            2.0
+rigidBonds          all 
+nonbondedFreq       1
+fullElectFrequency  5 
+stepspercycle       10
+
+# Output
+binaryoutput        no
+outputEnergies      1000
+
+# Periodic boundary conditions
+cellBasisVector1     $side       0.      0.
+cellBasisVector2      0.      $side      0.
+cellBasisVector3      0.       0.     $side
+wrapAll             off
+
+# Temperature scaling
+langevin on
+langevinTemp 300.
+langevinDamping 5
+langevinHydrogen off
+
+## Particle-mesh Ewald Sum
+PME                 no
+PMEGridSpacing      1.0
+
+#############################################################
+## EXTRA PARAMETERS                                        ##
+#############################################################
+minimize 10000
+run 10000
+
+

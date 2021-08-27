@@ -1,32 +1,30 @@
-using CellListMap
 using PDBTools
 
-#9999 so we do not require two segments
-x = [ 100*rand(3) for i in 1:9_999 ]
+for n in [ 10000, 100000, 300000 ]
 
-box = Box([ 50. 10.  0.
-             0. 50. 20.
-            10.  0. 50.],10)
+    x = [ 300*rand(3) for i in 1:n ]
 
-#cl = CellList(x,box)
+    d = 10_000/(46.36^3)
+    v = n / d
+    l = v^(1/3)
+    println(l)
+    
+    atoms = [ Atom(
+                index=i,
+                chain="A",
+                resnum = i%10000,
+                residue = i%10000,
+                name="NE",
+                resname="NE",
+                x=x[i][1],
+                y=x[i][2],
+                z=x[i][3],
+                segname="N$(div(i,10000)+1)"
+              ) for i in 1:n ]
+    
+    writePDB(atoms,"$n.pdb")
 
-p = CellListMap.wrap_to_first.(x,Ref(box.unit_cell.matrix))
-
-atoms = [ Atom(
-            index=i,
-            chain="A",
-            resnum=i,
-            residue=i,
-            name="NE",
-            resname="NE",
-            x=p[i][1],
-            y=p[i][2],
-            z=p[i][3],
-            segname="NEON"
-          ) for i in 1:length(p) ]
-
-writePDB(atoms,"triclinic1.pdb")
-
+end
 
 
 

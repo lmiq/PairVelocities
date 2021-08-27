@@ -1,0 +1,6 @@
+tolerance 2.0
+output 10000.pdb
+structure ne1.pdb
+    number 10000
+    inside box 0. 0. 0. 44.35999999999999 44.35999999999999 44.35999999999999
+end structure

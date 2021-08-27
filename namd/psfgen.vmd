@@ -1,0 +1,54 @@
+
+package require psfgen
+topology top_bms_dec03.inp
+
+set values { 10000 100000 300000 } 
+set values { 10000 }
+
+foreach n $values {
+
+    set nseg [ expr $n / 9999 + 1 ]
+    
+    mol new ./$n.pdb
+    
+    set f 0
+    set l [ expr $f + 9998 ] 
+    for { set i 1 } { $i <= $nseg } { incr i } {
+      puts ">> $i segment formed by residues: $f to $l "
+      set ne [ atomselect top "resname NE and ( index >= $f and index <= $l )" ]
+      $ne writepdb ne$i.pdb
+      puts " file written should have [ $ne num ] atoms " 
+      set f [ expr $l + 1 ]
+      set l [ expr $f + 9998 ]
+      $ne delete
+    }
+    for { set i 1 } { $i <= $nseg } { incr i } {
+      puts " Building segment $i "
+      segment NE$i { pdb ne$i.pdb }
+      coordpdb ne$i.pdb NE$i
+    }
+    
+    if { $n == 10000 } { 
+        writepsf ./ne10k.psf 
+        writepdb ./ne10k.pdb
+        mol delete 0
+    }
+    if { $n == 100000 } { 
+        writepsf ./ne100k.psf
+        writepdb ./ne100k.pdb
+        mol delete 1
+    }
+    if { $n == 300000 } { 
+        writepsf ./ne300k.psf
+        writepdb ./ne300k.pdb
+        mol delete 2
+    }
+    
+    for { set i 1 } { $i <= $nseg } { incr i } {
+      file delete ne$i.pdb
+    }
+
+}
+
+exit
+
