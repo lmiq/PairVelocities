@@ -15,7 +15,7 @@ using LinearAlgebra: norm_sqr
     x0::V = getcoor("o6.dcd")  
     temperature::T = 300.
     nsteps::Int = 10_000
-    dt::T = 2.0 # fs
+    dt::T = 1.0 # fs
     ibath::Int = 10
     print_energy::Int = 50 
     print_traj::Int = 100
@@ -92,6 +92,7 @@ end
 function getcoor(file)
     traj = redirect_stdout(() -> Chemfiles.Trajectory(file), devnull)
     frame = Chemfiles.read_step(traj,0)
+    Chemfiles.close(traj)
     return copy(reinterpret(reshape,SVector{3,Float64},Chemfiles.positions(frame)))
 end
 
