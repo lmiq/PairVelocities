@@ -108,7 +108,6 @@ function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
     # Adjust average to desidred temperature
     t0 = compute_temp(v,mass,kB) 
     @. v = v * sqrt(temperature/t0)
-    # Remove drift
 
     # Build cell lists for the first time
     cl = CellList(x,box)
