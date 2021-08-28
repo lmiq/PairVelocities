@@ -12,16 +12,16 @@ using LinearAlgebra: norm_sqr
 # Simulation setup
 #
 @with_kw struct Params{V,N,T,M,UnitCellType}
-    x0::V = getcoor("o6.dcd")  
+    x0::V = getcoor("./ne10k_initial.pdb")  
     temperature::T = 300.
     nsteps::Int = 10_000
     dt::T = 1.0 # fs
     ibath::Int = 10
     print_energy::Int = 50 
     print_traj::Int = 100
-    trajfile::String = "traj.xyz"
-    cutoff::T = 10.
-    box::Box{UnitCellType,N,T,M} = Box([ 80., 80., 80. ], cutoff)
+    trajfile::String = "ne10k_traj.xyz"
+    cutoff::T = 12.
+    box::Box{UnitCellType,N,T,M} = Box([ 46.37, 46.37, 46.37 ], cutoff)
     # Parameters for Neon
     mass::T = 20.17900 # g/mol 
     ε::T = 0.0441795 # kcal/mol
@@ -29,14 +29,14 @@ using LinearAlgebra: norm_sqr
     kB::T = 0.001985875 # Boltzmann constant kcal / mol K
 end
 
-@fastpow function potential_energy(d2,ε,σ,u)
-    u += ε*( σ^12/d2^6 - 2*σ^6/d2^3 )
+function potential_energy(d2,ε,σ,u)
+    @fastpow u += ε*( σ^12/d2^6 - 2*σ^6/d2^3 )
     return u
 end
 
-@fastpow function forces(x,y,i,j,d2,ε,σ,f)
+function forces(x,y,i,j,d2,ε,σ,f)
     r = y - x
-    dudr = -12*ε*(σ^12/d2^7 - σ^6/d2^4)*r
+    @fastpow dudr = -12*ε*(σ^12/d2^7 - σ^6/d2^4)*r
     f[i] = f[i] + dudr
     f[j] = f[j] - dudr
     return f

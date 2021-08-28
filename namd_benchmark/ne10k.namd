@@ -27,7 +27,7 @@ parameters ./par_bms_dec03.inp
  
 # Force-Field Parameters
 exclude scaled1-4
-cutoff              12.
+cutoff              11.58
 switching           off
 temperature         300.
 

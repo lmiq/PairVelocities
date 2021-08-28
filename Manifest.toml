@@ -17,9 +17,9 @@ version = "0.5.10"
 
 [[CellListMap]]
 deps = ["DocStringExtensions", "LinearAlgebra", "Parameters", "ProgressMeter", "Random", "Setfield", "StaticArrays"]
-path = "/home/leandro/.julia/dev/CellListMap"
+git-tree-sha1 = "6e1e33656659a3a7e10aaaa6c8f819b64d643059"
 uuid = "69e1c6dd-3888-40e6-b3c8-31ac5f578864"
-version = "0.5.7"
+version = "0.5.11"
 
 [[ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
