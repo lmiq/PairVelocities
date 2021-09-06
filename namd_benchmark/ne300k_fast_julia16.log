@@ -1,0 +1,381 @@
+
+signal (2): Interrupt
+in expression starting at /home/leandro/Downloads/PairVelocities/namd_benchmark/ne300k_fast.jl:11
+* at ./float.jl:332 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:40 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+- at ./float.jl:329 [inlined]
+macro expansion at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:75 [inlined]
+_map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:40 [inlined]
+map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:37 [inlined]
+- at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:16 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:39 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+== at ./promotion.jl:410 [inlined]
+iterate at ./range.jl:674 [inlined]
+partition! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:83
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:243
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+partition! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:79
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:243
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+<= at ./float.jl:374 [inlined]
+#98 at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:243 [inlined]
+partition! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:79
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:243
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+- at ./float.jl:329 [inlined]
+macro expansion at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:75 [inlined]
+_map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:40 [inlined]
+map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:37 [inlined]
+- at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:16 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:39 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+== at ./promotion.jl:410 [inlined]
+iterate at ./range.jl:674 [inlined]
+partition! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:83
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:243
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+* at ./float.jl:332 [inlined]
+#380 at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:21 [inlined]
+macro expansion at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:75 [inlined]
+_map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:40 [inlined]
+map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:31 [inlined]
+* at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:21 [inlined]
+* at ./operators.jl:560 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:40 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+* at ./float.jl:332 [inlined]
+#380 at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:21 [inlined]
+macro expansion at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:75 [inlined]
+_map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:40 [inlined]
+map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:31 [inlined]
+* at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:21 [inlined]
+* at ./operators.jl:560 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:40 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+- at ./float.jl:329 [inlined]
+macro expansion at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:75 [inlined]
+_map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:40 [inlined]
+map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:37 [inlined]
+- at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:16 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:39 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+setindex! at ./array.jl:839 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:41 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+- at ./float.jl:329 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:40 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+- at ./float.jl:329 [inlined]
+macro expansion at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:75 [inlined]
+_map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:40 [inlined]
+map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:37 [inlined]
+- at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:16 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:39 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+- at ./float.jl:329 [inlined]
+macro expansion at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:75 [inlined]
+_map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:40 [inlined]
+map at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:37 [inlined]
+- at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:16 [inlined]
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:249
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+* at ./float.jl:332 [inlined]
+abs2 at ./number.jl:151 [inlined]
+macro expansion at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:140 [inlined]
+_mapfoldl at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:115 [inlined]
+_mapreduce at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:113 [inlined]
+#mapreduce#284 at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:110 [inlined]
+mapreduce##kw at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/mapreduce.jl:110 [inlined]
+norm_sqr at /home/leandro/.julia/packages/StaticArrays/aMe0r/src/linalg.jl:211 [inlined]
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:249
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+getindex at ./array.jl:801 [inlined]
+forces at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:41 [inlined]
+#12 at /home/leandro/Downloads/PairVelocities/namd_benchmark/simulate_fast.jl:164
+cell_output! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:251
+inner_loop! at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:214
+macro expansion at /home/leandro/.julia/packages/CellListMap/HfE09/src/CoreComputing.jl:57 [inlined]
+#89#threadsfor_fun at ./threadingconstructs.jl:81
+#89#threadsfor_fun at ./threadingconstructs.jl:48
+unknown function (ip: 0x7f9f080b0aec)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2237 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2419
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1703 [inlined]
+start_task at /buildworker/worker/package_linux64/build/src/task.c:839
+unknown function (ip: (nil))
+unknown function (ip: (nil))
+Allocations: 202618170 (Pool: 202557070; Big: 61100); GC: 125
+STEP =        0 U = 2948822.67189 K = 268093.12500 TOT = 3216915.79689 TEMP =    300.00000
+STEP =       50 U = 2975292.72634 K = 285423.87574 TOT = 3260716.60209 TEMP =    319.39336
+STEP =      100 U = 2942491.40274 K = 285011.56844 TOT = 3227502.97118 TEMP =    318.93198
+STEP =      150 U = 2940870.21312 K = 281391.26304 TOT = 3222261.47616 TEMP =    314.88080
+STEP =      200 U = 2913458.00435 K = 279016.49758 TOT = 3192474.50193 TEMP =    312.22341
+STEP =      250 U = 2918150.77491 K = 279596.49201 TOT = 3197747.26692 TEMP =    312.87243
+STEP =      300 U = 2921790.75029 K = 279548.77631 TOT = 3201339.52660 TEMP =    312.81904
+STEP =      350 U = 2930416.84999 K = 279751.51214 TOT = 3210168.36213 TEMP =    313.04590
+STEP =      400 U = 2924594.78446 K = 279133.00831 TOT = 3203727.79277 TEMP =    312.35379
+STEP =      450 U = 2926138.05026 K = 279169.12580 TOT = 3205307.17606 TEMP =    312.39420
+STEP =      500 U = 2925892.33281 K = 280137.22691 TOT = 3206029.55972 TEMP =    313.47752
+STEP =      550 U = 2928505.97020 K = 279552.10888 TOT = 3208058.07908 TEMP =    312.82277
+STEP =      600 U = 2928106.04567 K = 279884.79798 TOT = 3207990.84365 TEMP =    313.19505
+STEP =      650 U = 2933643.94577 K = 281225.45750 TOT = 3214869.40327 TEMP =    314.69527
+STEP =      700 U = 2927516.75226 K = 279731.46594 TOT = 3207248.21820 TEMP =    313.02347
+STEP =      750 U = 2904231.73570 K = 279306.59861 TOT = 3183538.33430 TEMP =    312.54804
+STEP =      800 U = 2931718.57686 K = 280892.35066 TOT = 3212610.92752 TEMP =    314.32251
+STEP =      850 U = 2925391.94367 K = 281488.45655 TOT = 3206880.40022 TEMP =    314.98957
+STEP =      900 U = 2931075.02491 K = 280029.23331 TOT = 3211104.25822 TEMP =    313.35667
+STEP =      950 U = 2919922.99930 K = 280135.46886 TOT = 3200058.46817 TEMP =    313.47555
+STEP =     1000 U = 2937486.21580 K = 280768.86427 TOT = 3218255.08007 TEMP =    314.18433
+STEP =     1050 U = 2920751.92255 K = 280737.31156 TOT = 3201489.23411 TEMP =    314.14902
+STEP =     1100 U = 2942861.98660 K = 281316.14672 TOT = 3224178.13333 TEMP =    314.79675
+STEP =     1150 U = 2924899.33580 K = 280688.64812 TOT = 3205587.98393 TEMP =    314.09457
+STEP =     1200 U = 2928130.03169 K = 280583.50315 TOT = 3208713.53484 TEMP =    313.97691
+STEP =     1250 U = 2924022.02332 K = 279871.62880 TOT = 3203893.65211 TEMP =    313.18031
+STEP =     1300 U = 2914962.91654 K = 280631.59983 TOT = 3195594.51636 TEMP =    314.03073
+STEP =     1350 U = 2927211.50608 K = 282664.59162 TOT = 3209876.09770 TEMP =    316.30568
+STEP =     1400 U = 2920930.51424 K = 280368.14702 TOT = 3201298.66125 TEMP =    313.73592
+STEP =     1450 U = 2917539.39361 K = 280899.64049 TOT = 3198439.03410 TEMP =    314.33067
+STEP =     1500 U = 2921572.62849 K = 281358.51354 TOT = 3202931.14203 TEMP =    314.84416
+STEP =     1550 U = 2928188.77006 K = 279687.37637 TOT = 3207876.14643 TEMP =    312.97413
+STEP =     1600 U = 2943699.84539 K = 282331.12811 TOT = 3226030.97351 TEMP =    315.93253
+STEP =     1650 U = 2934108.54804 K = 279736.53798 TOT = 3213845.08602 TEMP =    313.02914
+STEP =     1700 U = 2925387.54087 K = 280450.81886 TOT = 3205838.35973 TEMP =    313.82843
+STEP =     1750 U = 2918193.86297 K = 281113.53364 TOT = 3199307.39661 TEMP =    314.57002
+STEP =     1800 U = 2916691.33878 K = 281333.06044 TOT = 3198024.39922 TEMP =    314.81568
+STEP =     1850 U = 2915510.02909 K = 282305.39610 TOT = 3197815.42520 TEMP =    315.90373
+STEP =     1900 U = 2913442.59117 K = 281014.88524 TOT = 3194457.47641 TEMP =    314.45963
+STEP =     1950 U = 2925426.57668 K = 281790.41172 TOT = 3207216.98840 TEMP =    315.32746
+STEP =     2000 U = 2915392.87506 K = 279405.57289 TOT = 3194798.44794 TEMP =    312.65879
+STEP =     2050 U = 2906454.95227 K = 281055.49247 TOT = 3187510.44475 TEMP =    314.50507
+STEP =     2100 U = 2924716.32963 K = 280914.84647 TOT = 3205631.17610 TEMP =    314.34769
+STEP =     2150 U = 2919955.81272 K = 280496.89969 TOT = 3200452.71241 TEMP =    313.88000
+STEP =     2200 U = 2924741.71263 K = 281609.13011 TOT = 3206350.84274 TEMP =    315.12460
+STEP =     2250 U = 2917503.00757 K = 280122.50352 TOT = 3197625.51109 TEMP =    313.46104
+STEP =     2300 U = 2926789.80427 K = 281640.88631 TOT = 3208430.69058 TEMP =    315.16014
+STEP =     2350 U = 2920670.28539 K = 281360.33055 TOT = 3202030.61595 TEMP =    314.84619
+STEP =     2400 U = 2915278.41858 K = 281551.60270 TOT = 3196830.02128 TEMP =    315.06023
+STEP =     2450 U = 2913978.36529 K = 281884.55699 TOT = 3195862.92228 TEMP =    315.43281
+STEP =     2500 U = 2930717.10258 K = 281897.48844 TOT = 3212614.59102 TEMP =    315.44728
+STEP =     2550 U = 2916134.87197 K = 278561.83909 TOT = 3194696.71106 TEMP =    311.71464
+STEP =     2600 U = 2923689.00967 K = 281533.91780 TOT = 3205222.92747 TEMP =    315.04044
+STEP =     2650 U = 2902395.72416 K = 279148.55584 TOT = 3181544.27999 TEMP =    312.37118
+STEP =     2700 U = 2925714.11199 K = 281479.65850 TOT = 3207193.77049 TEMP =    314.97972
+STEP =     2750 U = 2912560.82957 K = 282546.03223 TOT = 3195106.86180 TEMP =    316.17301
+STEP =     2800 U = 2915657.25147 K = 280071.76835 TOT = 3195729.01982 TEMP =    313.40427
+STEP =     2850 U = 2920252.56884 K = 281088.03485 TOT = 3201340.60370 TEMP =    314.54149
+STEP =     2900 U = 2931987.03402 K = 282657.70103 TOT = 3214644.73505 TEMP =    316.29797
+STEP =     2950 U = 2907610.31507 K = 279897.32023 TOT = 3187507.63530 TEMP =    313.20906
+STEP =     3000 U = 2912252.36676 K = 280090.05124 TOT = 3192342.41799 TEMP =    313.42473
+STEP =     3050 U = 2915025.44216 K = 280241.83367 TOT = 3195267.27583 TEMP =    313.59458
+STEP =     3100 U = 2907839.71435 K = 280252.89927 TOT = 3188092.61362 TEMP =    313.60696
+STEP =     3150 U = 2927256.07908 K = 281114.02877 TOT = 3208370.10785 TEMP =    314.57058
+STEP =     3200 U = 2914959.67622 K = 279675.95564 TOT = 3194635.63186 TEMP =    312.96135
+STEP =     3250 U = 2915034.52643 K = 280384.85314 TOT = 3195419.37957 TEMP =    313.75462
+STEP =     3300 U = 2914110.14551 K = 280904.44599 TOT = 3195014.59150 TEMP =    314.33605
+STEP =     3350 U = 2927580.64564 K = 282108.01983 TOT = 3209688.66547 TEMP =    315.68287
+STEP =     3400 U = 2919348.89653 K = 280888.24468 TOT = 3200237.14121 TEMP =    314.31792
+STEP =     3450 U = 2930056.85425 K = 281341.81324 TOT = 3211398.66748 TEMP =    314.82547
+STEP =     3500 U = 2918143.21939 K = 282804.03275 TOT = 3200947.25214 TEMP =    316.46171
+STEP =     3550 U = 2895341.98203 K = 280686.96858 TOT = 3176028.95061 TEMP =    314.09269
+STEP =     3600 U = 2921968.67938 K = 281989.09587 TOT = 3203957.77526 TEMP =    315.54979
+STEP =     3650 U = 2913102.83118 K = 280875.92293 TOT = 3193978.75412 TEMP =    314.30413
+STEP =     3700 U = 2925510.97508 K = 281179.31975 TOT = 3206690.29483 TEMP =    314.64364
+STEP =     3750 U = 2911447.29266 K = 280732.71899 TOT = 3192180.01165 TEMP =    314.14388
+STEP =     3800 U = 2928032.91314 K = 281672.62165 TOT = 3209705.53478 TEMP =    315.19565
+STEP =     3850 U = 2898357.47652 K = 279157.59964 TOT = 3177515.07616 TEMP =    312.38130
+STEP =     3900 U = 2922217.36520 K = 281173.38274 TOT = 3203390.74794 TEMP =    314.63699
+STEP =     3950 U = 2916520.27355 K = 280809.03260 TOT = 3197329.30616 TEMP =    314.22928
+STEP =     4000 U = 2919209.88353 K = 280711.89360 TOT = 3199921.77713 TEMP =    314.12058
+STEP =     4050 U = 2923867.53842 K = 281316.24030 TOT = 3205183.77872 TEMP =    314.79685
+STEP =     4100 U = 2918464.45610 K = 280845.58457 TOT = 3199310.04066 TEMP =    314.27018
+STEP =     4150 U = 2916791.80027 K = 280458.51311 TOT = 3197250.31337 TEMP =    313.83704
+STEP =     4200 U = 2910492.27269 K = 281315.09307 TOT = 3191807.36576 TEMP =    314.79557
+STEP =     4250 U = 2922302.05918 K = 279787.77147 TOT = 3202089.83066 TEMP =    313.08647
+STEP =     4300 U = 2912105.70744 K = 279684.53125 TOT = 3191790.23869 TEMP =    312.97095
+STEP =     4350 U = 2911831.98830 K = 280508.61781 TOT = 3192340.60611 TEMP =    313.89311
+STEP =     4400 U = 2928176.93804 K = 281691.82667 TOT = 3209868.76471 TEMP =    315.21714
+STEP =     4450 U = 15441628302790308541759488.00000 K = 104403576792360995597415556128121401934908932227072.00000 TOT = 104403576792360995597415556128121401934908932227072.00000 TEMP = 116829079588327012092953599728546784518372065280.00000
+STEP =     4500 U = 927823424490214072629854208.00000 K = 491813659406525548515331567359249288634786669142943289311232.00000 TOT = 491813659406525548515331567359249288634786669142943289311232.00000 TEMP = 550346443318744841779947125998928069392712441939613450240.00000
+STEP =     4550 U = 255552380935912806154240.00000 K = 84153829506919082081108751696061047658536380794598506627072.00000 TOT = 84153829506919082081108751696061047658536380794598506627072.00000 TEMP = 94169325871656446585132248334133840860520176364894027776.00000
+STEP =     4600 U = 1667295575348271751626752.00000 K = 112190115466069117026960800537276462325677746466758171033600.00000 TOT = 112190115466069117026960800537276462325677746466758171033600.00000 TEMP = 125542326532322444570779249984486733183317495953691246592.00000
+STEP =     4650 U = 37197234904210133615640576.00000 K = 1620425359259844475037143198567894975095606234876102049792.00000 TOT = 1620425359259844475037143198567894975095606234876102049792.00000 TEMP = 1813278903656904015795296410711508618216277555359514624.00000
+STEP =     4700 U = 30724498851383721590784000.00000 K = 234479676182919757463938986265223486290165300019068928.00000 TOT = 234479676182919757463938986265223486290165300019068928.00000 TEMP = 262386075192625419994390888148926138322657619214336.00000
+STEP =     4750 U = 1428518999311997774856192.00000 K = 24976343768314213359326161907545084582799253177614529986560.00000 TOT = 24976343768314213359326161907545084582799253177614529986560.00000 TEMP = 27948882055421095153826684585211729847620597216456998912.00000
+STEP =     4800 U = 18333096149263203830857728.00000 K = 739120138849601305520400681329770914951376369662214107299840.00000 TOT = 739120138849601305520400681329770914951376369662214107299840.00000 TEMP = 827085892839961421082568920273145995343417007415006068736.00000
+STEP =     4850 U = 23154991097093361238016.00000 K = 14306924744370029962872704782591099451769793252812771701962047488.00000 TOT = 14306924744370029962872704782591099451769793252812771701962047488.00000 TEMP = 16009651210977563725595953749065432640436690158289136014852096.00000
+STEP =     4900 U = 292842928271640693309440.00000 K = 485806161482680630120561738425208968400039939242661929725984768.00000 TOT = 485806161482680630120561738425208968400039939242661929725984768.00000 TEMP = 543623968144666898730943317631114221699895086128773904465920.00000
+STEP =     4950 U = 347576079009133167242117120.00000 K = 142938779380961522376742493457341164971495694808482923570561827209216.00000 TOT = 142938779380961522376742493457341164971495694808482923570561827209216.00000 TEMP = 159950516501638979392472917576023788938810239580871990517449097216.00000
+STEP =     5000 U = 132893713613568404881408.00000 K = 1672616466597608423293552294398581343969698907287210426368.00000 TOT = 1672616466597608423293552294398581343969698907287210426368.00000 TEMP = 1871681491195578176018948390227480234011671450676625408.00000
+STEP =     5050 U = 8577224466127750724321280.00000 K = 250485217989316098641018163901154989483836967372193792.00000 TOT = 250485217989316098641018163901154989483836967372193792.00000 TEMP = 280296502928953652833230580011141469666496940605440.00000
+STEP =     5100 U = 1499731141441958339399887196520448.00000 K = 21221426801483602664004464928523584827327183042473037180750247493632.00000 TOT = 21221426801483602664004464928523584827327183042473037180750247493632.00000 TEMP = 23747076842962984794128794366688691906920420649516964361302704128.00000
+STEP =     5150 U = 245461126080884295709229056.00000 K = 67963892855332389400369735203574839159987554250148282368.00000 TOT = 67963892855332389400369735203574839159987554250148282368.00000 TEMP = 76052557694643295698208337401241137324122448219602944.00000

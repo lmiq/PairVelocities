@@ -29,32 +29,17 @@ using LinearAlgebra: norm_sqr
     kB::T = 0.001985875 # Boltzmann constant kcal / mol K
 end
 
-# Structure that carries both the energy and force vector
-@with_kw struct UF{T,V}
-    u::T
-    f::V
+@fastpow function potential_energy(d2,ε,σ,u)
+    u += ε*( σ^12/d2^6 - 2*σ^6/d2^3 )
+    return u
 end
 
-# function that computes energy and forces
-@fastpow function energy_and_force(x,y,i,j,d2,ε,σ,uf::UF{T,V}) where {T,V}
-    @unpack u, f = uf
-    d = sqrt(d2)
-    u += ε*( σ^12/d^12 - 2*σ^6/d^6 )
+@fastpow function forces(x,y,i,j,d2,ε,σ,f)
     r = y - x
-    dudr = -12*ε*(σ^12/d^13 - σ^6/d^7)*(r/d)
+    dudr = -12*ε*(σ^12/d2^7 - σ^6/d2^4)*r
     f[i] = f[i] + dudr
     f[j] = f[j] - dudr
-    return UF(u,f)
-end
-
-# reduction rule for the (u,f) tuple (u, and f are zeroed outside)
-function reduceuf(uf,uf_threaded)
-    @unpack u, f = uf
-    for it in 1:nthreads()
-        u += uf_threaded[it].u
-        @. f += uf_threaded[it].f
-    end
-    return UF(u,f)
+    return f
 end
 
 # Kinetic energy and temperature 
@@ -69,9 +54,13 @@ function remove_drift!(v)
 end
 
 # Function to print output data
-function print_data(istep,x,params,u,kinetic,trajfile)
-    @unpack print_energy, print_traj, kB = params
+function print_data(istep,x,params,cl,kinetic,trajfile)
+    @unpack print_energy, print_traj, kB, box, ε, σ = params
     if istep%print_energy == 0
+        u = map_pairwise!( 
+            (x,y,i,j,d2,output) -> potential_energy(d2,ε,σ,output),
+            0., box, cl, parallel=true,
+        ) 
         temp = compute_temp(kinetic,kB,length(x))
         @printf(
             "STEP = %8i U = %12.5f K = %12.5f TOT = %12.5f TEMP = %12.5f\n", 
@@ -126,20 +115,12 @@ function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
 
     # preallocate threaded output, since it contains the forces vector
     f .= Ref(zeros(eltype(f)))
-    uf_threaded = [ UF(0.,deepcopy(f)) for _ in 1:nthreads() ]
+    f_threaded = [ deepcopy(f) for _ in 1:nthreads() ]
     aux = CellListMap.AuxThreaded(cl)
 
-    # Compute energy and forces at initial point
-    uf = UF(0.,f)
-    uf = map_pairwise!( 
-        (x,y,i,j,d2,output) -> energy_and_force(x,y,i,j,d2,ε,σ,output),
-        uf, box, cl, parallel=true,
-        reduce=reduceuf,
-        output_threaded=uf_threaded
-    ) 
-    u = uf.u
+    # Print data at initial point
     kinetic = compute_kinetic(v,mass)
-    print_data(0,x,params,u,kinetic,trajfile)
+    print_data(0,x,params,cl,kinetic,trajfile)
 
     # Simulate
     for istep in 1:nsteps
@@ -147,41 +128,31 @@ function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
         # Update positions (velocity-verlet)
         @. x = x + v*dt + 0.5*(f/mass)*dt^2
 
-        # Reset energy and forces
+        # Reset forces
         flast .= f
-        u = 0.
         f .= Ref(zeros(eltype(f)))
-        uf = UF(u,f)
         @threads for it in 1:nthreads()
-           ft = uf_threaded[it].f 
-           ft .= Ref(zeros(eltype(f)))
-           uf_threaded[it] = UF(0.,ft)
+            f_threaded[it] .= Ref(zeros(eltype(f)))
         end
 
-        # Compute energy and forces
-        uf = map_pairwise!( 
-            (x,y,i,j,d2,output) -> energy_and_force(x,y,i,j,d2,ε,σ,output),
-            uf, box, cl, parallel=true,
-            reduce=reduceuf,
-            output_threaded=uf_threaded
+        # Update forces
+        map_pairwise!( 
+            (x,y,i,j,d2,output) -> forces(x,y,i,j,d2,ε,σ,output),
+            f, box, cl, parallel=true,
+            output_threaded=f_threaded
         ) 
-        u = uf.u
-        if u/length(x) > 1e10
-            println("Simulation is unstable. ")
-            return nothing
-        end
          
         # Update velocities
         @. v = v + 0.5*((flast + f)/mass)*dt 
 
         # Print data and output file
         kinetic = compute_kinetic(v,mass)
-        print_data(istep,x,params,u,kinetic,trajfile)
+        print_data(istep,x,params,cl,kinetic,trajfile)
 
         # Isokinetic bath
         if istep%params.ibath == 0
-            temp = compute_temp(kinetic,kB,length(v))
             remove_drift!(v)
+            temp = compute_temp(kinetic,kB,length(v))
             @. v = v * sqrt(temperature/temp)
         end
 

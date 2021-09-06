@@ -7,4 +7,7 @@ p = Params(
     box = Box([ side, side, side ], 12.),
     trajfile = "ne10k_traj.xyz"
 )
-simulate(p)
+@time simulate(p)
+
+
+

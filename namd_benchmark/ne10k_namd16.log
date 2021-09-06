@@ -1,0 +1,827 @@
+Running command: /home/leandro/Downloads/NAMD_2.14_Linux-x86_64-multicore/namd2 +p16 ./ne10k.namd
+
+Charm++: standalone mode (not using charmrun)
+Charm++> Running in Multicore mode: 16 threads (PEs)
+Charm++> Using recursive bisection (scheme 3) for topology aware partitions
+Converse/Charm++ Commit ID: v6.10.2-0-g7bf00fa-namd-charm-6.10.2-build-2020-Aug-05-556
+Warning> Randomization of virtual memory (ASLR) is turned on in the kernel, thread migration may not work! Run 'echo 0 > /proc/sys/kernel/randomize_va_space' as root to disable it, or try running with '+isomalloc_sync'.
+CharmLB> Load balancer assumes all CPUs are same.
+Charm++> Running on 1 hosts (2 sockets x 8 cores x 2 PUs = 32-way SMP)
+Charm++> cpu topology info is gathered in 0.001 seconds.
+Info: NAMD 2.14 for Linux-x86_64-multicore
+Info: 
+Info: Please visit http://www.ks.uiuc.edu/Research/namd/
+Info: for updates, documentation, and support information.
+Info: 
+Info: Please cite Phillips et al., J. Chem. Phys. 153:044130 (2020) doi:10.1063/5.0014475
+Info: in all publications reporting results obtained with NAMD.
+Info: 
+Info: Based on Charm++/Converse 61002 for multicore-linux-x86_64-iccstatic
+Info: Built Mon Aug 24 10:08:36 CDT 2020 by jim on belfast.ks.uiuc.edu
+Info: 1 NAMD  2.14  Linux-x86_64-multicore  16    p001  leandro
+Info: Running on 16 processors, 1 nodes, 1 physical nodes.
+Info: CPU topology information available.
+Info: Charm++/Converse parallel runtime startup completed at 0.00513366 s
+CkLoopLib is used in SMP with simple dynamic scheduling (converse-level notification)
+Info: 5399.72 MB of memory in use based on /proc/self/stat
+Info: Configuration file is ./ne10k.namd
+Info: Changed directory to .
+TCL: Suspending until startup complete.
+Warning: The following variables were set in the
+Warning: configuration file but will be ignored:
+Warning:    PMEGridSpacing (PME)
+Info: SIMULATION PARAMETERS:
+Info: TIMESTEP               1
+Info: NUMBER OF STEPS        0
+Info: STEPS PER CYCLE        20
+Info: PERIODIC CELL BASIS 1  46.36 0 0
+Info: PERIODIC CELL BASIS 2  0 46.36 0
+Info: PERIODIC CELL BASIS 3  0 0 46.36
+Info: PERIODIC CELL CENTER   0 0 0
+Info: LOAD BALANCER  Centralized
+Info: LOAD BALANCING STRATEGY  New Load Balancers -- DEFAULT
+Info: LDB PERIOD             4000 steps
+Info: FIRST LDB TIMESTEP     100
+Info: LAST LDB TIMESTEP     -1
+Info: LDB BACKGROUND SCALING 1
+Info: HOM BACKGROUND SCALING 1
+Info: MIN ATOMS PER PATCH    40
+Info: INITIAL TEMPERATURE    300
+Info: CENTER OF MASS MOVING INITIALLY? NO
+Info: DIELECTRIC             1
+Info: EXCLUDE                SCALED ONE-FOUR
+Info: 1-4 ELECTROSTATICS SCALED BY 1
+Info: MODIFIED 1-4 VDW PARAMETERS WILL BE USED
+Info: DCD FILENAME           ./ne10k.dcd
+Info: DCD FREQUENCY          100
+Info: DCD FIRST STEP         100
+Info: DCD FILE WILL CONTAIN UNIT CELL DATA
+Info: NO EXTENDED SYSTEM TRAJECTORY OUTPUT
+Info: NO VELOCITY DCD OUTPUT
+Info: NO FORCE DCD OUTPUT
+Info: OUTPUT FILENAME        ./ne10k
+Info: RESTART FILENAME       ./ne10k
+Info: RESTART FREQUENCY      20000
+Info: BINARY RESTART FILES WILL BE USED
+Info: CUTOFF                 12
+Info: PAIRLIST DISTANCE      12
+Info: PAIRLIST SHRINK RATE   0.01
+Info: PAIRLIST GROW RATE     0.01
+Info: PAIRLIST TRIGGER       0.3
+Info: PAIRLISTS PER CYCLE    2
+Info: PAIRLISTS ENABLED
+Info: MARGIN                 0
+Info: HYDROGEN GROUP CUTOFF  2.5
+Info: PATCH DIMENSION        14.5
+Info: ENERGY OUTPUT STEPS    50
+Info: CROSSTERM ENERGY INCLUDED IN DIHEDRAL
+Info: TIMING OUTPUT STEPS    500
+Info: VELOCITY RESCALE FREQ  10
+Info: VELOCITY RESCALE TEMP  300
+Info: USING VERLET I (r-RESPA) MTS SCHEME.
+Info: C1 SPLITTING OF LONG RANGE ELECTROSTATICS
+Info: PLACING ATOMS IN PATCHES BY HYDROGEN GROUPS
+Info: RANDOM NUMBER SEED     1630346648
+Info: USE HYDROGEN BONDS?    NO
+Info: COORDINATE PDB         ./ne10k_initial.pdb
+Info: STRUCTURE FILE         ./ne10k.psf
+Info: PARAMETER file: CHARMM format! 
+Info: PARAMETERS             ./par_bms_dec03.inp
+Info: USING ARITHMETIC MEAN TO COMBINE L-J SIGMA PARAMETERS
+Info: SUMMARY OF PARAMETERS:
+Info: 74 BONDS
+Info: 164 ANGLES
+Info: 207 DIHEDRAL
+Info: 19 IMPROPER
+Info: 0 CROSSTERM
+Info: 50 VDW
+Info: 2 VDW_PAIRS
+Info: 0 NBTHOLE_PAIRS
+Info: TIME FOR READING PSF FILE: 0.0328232
+Info: Reading pdb file ./ne10k_initial.pdb
+Info: TIME FOR READING PDB FILE: 0.0140198
+Info: 
+Info: ****************************
+Info: STRUCTURE SUMMARY:
+Info: 10000 ATOMS
+Info: 0 BONDS
+Info: 0 ANGLES
+Info: 0 DIHEDRALS
+Info: 0 IMPROPERS
+Info: 0 CROSSTERMS
+Info: 0 EXCLUSIONS
+Info: 29997 DEGREES OF FREEDOM
+Info: 10000 HYDROGEN GROUPS
+Info: 1 ATOMS IN LARGEST HYDROGEN GROUP
+Info: 10000 MIGRATION GROUPS
+Info: 1 ATOMS IN LARGEST MIGRATION GROUP
+Info: TOTAL MASS = 201790 amu
+Info: TOTAL CHARGE = 0 e
+Info: MASS DENSITY = 3.36301 g/cm^3
+Info: ATOM DENSITY = 0.100362 atoms/A^3
+Info: *****************************
+Info: 
+Info: Entering startup at 0.0606688 s, 5796.74 MB of memory in use
+Info: Startup phase 0 took 0.000109225 s, 5796.74 MB of memory in use
+Info: ADDED 0 IMPLICIT EXCLUSIONS
+Info: Startup phase 1 took 0.00140551 s, 5798.09 MB of memory in use
+Info: NONBONDED TABLE R-SQUARED SPACING: 0.0625
+Info: NONBONDED TABLE SIZE: 769 POINTS
+Info: INCONSISTENCY IN FAST TABLE ENERGY VS FORCE: 0.000290475 AT 0.251946
+Info: ABSOLUTE IMPRECISION IN VDWA TABLE ENERGY: 1.26218e-29 AT 11.9974
+Info: ABSOLUTE IMPRECISION IN VDWA TABLE FORCE: 1.34106e-29 AT 11.9974
+Info: INCONSISTENCY IN VDWA TABLE ENERGY VS FORCE: 0.0040507 AT 0.251946
+Info: ABSOLUTE IMPRECISION IN VDWB TABLE ENERGY: 5.29396e-23 AT 11.9974
+Info: ABSOLUTE IMPRECISION IN VDWB TABLE FORCE: 9.34714e-23 AT 11.9974
+Info: INCONSISTENCY IN VDWB TABLE ENERGY VS FORCE: 0.00150189 AT 0.251946
+Info: Startup phase 2 took 0.00056892 s, 5798.52 MB of memory in use
+Info: Startup phase 3 took 0.000130358 s, 5798.52 MB of memory in use
+Info: Startup phase 4 took 0.00017687 s, 5798.52 MB of memory in use
+Info: Startup phase 5 took 9.8993e-05 s, 5798.52 MB of memory in use
+Info: PATCH GRID IS 3 (PERIODIC) BY 3 (PERIODIC) BY 3 (PERIODIC)
+Info: PATCH GRID IS 1-AWAY BY 1-AWAY BY 1-AWAY
+Info: REMOVING COM VELOCITY -0.0298613 0.0242399 -0.00691062
+Info: LARGEST PATCH (11) HAS 378 ATOMS
+Info: TORUS A SIZE 1 USING 0
+Info: TORUS B SIZE 1 USING 0
+Info: TORUS C SIZE 1 USING 0
+Info: TORUS MINIMAL MESH SIZE IS 1 BY 1 BY 1
+Info: Placed 100% of base nodes on same physical node as patch
+Info: Startup phase 6 took 0.00296286 s, 5800.46 MB of memory in use
+Info: Startup phase 7 took 0.000105709 s, 5800.46 MB of memory in use
+Info: Startup phase 8 took 8.7398e-05 s, 5800.46 MB of memory in use
+Info: Startup phase 9 took 9.2115e-05 s, 5800.46 MB of memory in use
+Info: Startup phase 10 took 8.6359e-05 s, 5800.46 MB of memory in use
+Info: Startup phase 11 took 0.000252817 s, 5800.46 MB of memory in use
+LDB: Central LB being created...
+Info: Startup phase 12 took 0.000425683 s, 5800.46 MB of memory in use
+Info: CREATING 593 COMPUTE OBJECTS
+Info: useSync: 0 useProxySync: 0
+Info: Startup phase 13 took 0.00263259 s, 5800.46 MB of memory in use
+Info: Startup phase 14 took 0.000108611 s, 5800.46 MB of memory in use
+Info: Startup phase 15 took 0.000108446 s, 5800.46 MB of memory in use
+Info: Finished startup at 0.0700213 s, 5800.46 MB of memory in use
+
+TCL: Running for 10000 steps
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:       0         0.0000         0.0000         0.0000         0.0000              0.0000     88672.7023         0.0000         0.0000      8841.9547          97514.6570       296.6613     88672.7023     97517.7403       296.6613         309600.9225    309600.9225     99639.2115    309600.9225    309600.9225
+
+LDB: ============= START OF LOAD BALANCING ============== 0.304442
+LDB: ============== END OF LOAD BALANCING =============== 0.304509
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 0.304605
+ENERGY:      50         0.0000         0.0000         0.0000         0.0000              0.0000     88634.9815         0.0000         0.0000      8943.6016          97578.5831       300.0717     88634.9815     97581.6539       299.6372         309538.5596    309538.5596     99639.2115    309536.1928    309536.1928
+
+LDB: ============= START OF LOAD BALANCING ============== 0.957771
+LDB: Largest compute 10 load 0.087147 is 20.9% of average load 0.417344
+LDB: Average compute 0.011998 is 2.9% of average load 0.417344
+LDB: Partitioning computes with target load 0.041734
+LDB: Increased migratable compute count from 513 to 570
+LDB: Largest unpartitionable compute is 0.000083
+LDB: ============== END OF LOAD BALANCING =============== 0.958225
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 0.958708
+OPENING COORDINATE DCD FILE
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 100
+The last position output (seq=100) takes 0.005 seconds, 5803.027 MB of memory in use
+Info: Initial time: 16 CPUs 0.00876011 s/step 0.10139 days/ns 5803.03 MB memory
+ENERGY:     100         0.0000         0.0000         0.0000         0.0000              0.0000     88610.4809         0.0000         0.0000      8963.9294          97574.4103       300.7537     88610.4809     97577.5261       300.0396         309469.2490    309469.2490     99639.2115    309489.3219    309489.3219
+
+LDB: ============= START OF LOAD BALANCING ============== 1.06325
+LDB: ============== END OF LOAD BALANCING =============== 1.06331
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 1.0634
+ENERGY:     150         0.0000         0.0000         0.0000         0.0000              0.0000     88592.8648         0.0000         0.0000      8904.2665          97497.1313       298.7519     88592.8648     97500.1994       300.4767         309402.9777    309402.9777     99639.2115    309409.4258    309409.4258
+
+LDB: ============= START OF LOAD BALANCING ============== 1.4582
+LDB: Largest compute 612 load 0.028734 is 8.7% of average load 0.331211
+LDB: Average compute 0.008552 is 2.6% of average load 0.331211
+LDB: TIME 1.45854 LOAD: AVG 0.331211 MAX 0.394558  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 None MEM: 5803.03 MB
+LDB: TIME 1.45902 LOAD: AVG 0.331211 MAX 0.354267  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 TorusLB MEM: 5803.03 MB
+LDB: ============== END OF LOAD BALANCING =============== 1.45947
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 1.46016
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 200
+The last position output (seq=200) takes 0.000 seconds, 5803.305 MB of memory in use
+Info: Initial time: 16 CPUs 0.00493037 s/step 0.0570645 days/ns 5803.3 MB memory
+ENERGY:     200         0.0000         0.0000         0.0000         0.0000              0.0000     88631.9189         0.0000         0.0000      8948.7040          97580.6230       300.2429     88631.9189     97583.7019       299.4676         309532.3777    309532.3777     99639.2115    309605.0046    309605.0046
+
+ENERGY:     250         0.0000         0.0000         0.0000         0.0000              0.0000     88564.4507         0.0000         0.0000      8941.1933          97505.6439       299.9909     88564.4507     97508.6953       300.4964         309332.0308    309332.0308     99639.2115    309371.2247    309371.2247
+
+LDB: ============= START OF LOAD BALANCING ============== 1.90351
+LDB: Largest compute 602 load 0.035957 is 8.7% of average load 0.413805
+LDB: Average compute 0.010710 is 2.6% of average load 0.413805
+LDB: TIME 1.90385 LOAD: AVG 0.413805 MAX 0.44314  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 None MEM: 5803.3 MB
+LDB: TIME 1.90402 LOAD: AVG 0.413805 MAX 0.44314  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 RefineTorusLB MEM: 5803.3 MB
+LDB: TIME 1.90415 LOAD: AVG 0.413805 MAX 0.428624  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 RefineTorusLB MEM: 5803.3 MB
+LDB: ============== END OF LOAD BALANCING =============== 1.90433
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 1.9047
+Info: Initial time: 16 CPUs 0.00442423 s/step 0.0512064 days/ns 5803.3 MB memory
+ENERGY:     300         0.0000         0.0000         0.0000         0.0000              0.0000     88641.7727         0.0000         0.0000      8936.2705          97578.0432       299.8257     88641.7727     97581.0659       299.5110         309558.7268    309558.7268     99639.2115    309457.2766    309457.2766
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 300
+The last position output (seq=300) takes 0.000 seconds, 5803.305 MB of memory in use
+ENERGY:     350         0.0000         0.0000         0.0000         0.0000              0.0000     88714.4312         0.0000         0.0000      8895.3086          97609.7398       298.4514     88714.4312     97612.6853       299.7571         309745.3102    309745.3102     99639.2115    309491.0967    309491.0967
+
+LDB: ============= START OF LOAD BALANCING ============== 2.33491
+LDB: Largest compute 602 load 0.036091 is 8.7% of average load 0.413442
+LDB: Average compute 0.010702 is 2.6% of average load 0.413442
+LDB: TIME 2.33525 LOAD: AVG 0.413442 MAX 0.428316  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 None MEM: 5803.3 MB
+LDB: TIME 2.33541 LOAD: AVG 0.413442 MAX 0.428316  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 RefineTorusLB MEM: 5803.3 MB
+LDB: TIME 2.33546 LOAD: AVG 0.413442 MAX 0.428316  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 RefineTorusLB MEM: 5803.3 MB
+LDB: ============== END OF LOAD BALANCING =============== 2.33562
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 2.33596
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 400
+The last position output (seq=400) takes 0.000 seconds, 5803.305 MB of memory in use
+Info: Benchmark time: 16 CPUs 0.00430259 s/step 0.0497985 days/ns 5803.3 MB memory
+ENERGY:     400         0.0000         0.0000         0.0000         0.0000              0.0000     88601.4886         0.0000         0.0000      8963.4329          97564.9215       300.7370     88601.4886     97568.0396       300.3434         309450.5533    309450.5533     99639.2115    309590.2851    309590.2851
+
+ENERGY:     450         0.0000         0.0000         0.0000         0.0000              0.0000     88630.7155         0.0000         0.0000      8919.2546          97549.9701       299.2548     88630.7155     97553.0133       300.0712         309515.2125    309515.2125     99639.2115    309507.2958    309507.2958
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 500
+The last position output (seq=500) takes 0.000 seconds, 5803.305 MB of memory in use
+Info: Benchmark time: 16 CPUs 0.00428446 s/step 0.0495886 days/ns 5803.3 MB memory
+TIMING: 500  CPU: 2.69424, 0.00534737/step  Wall: 2.70486, 0.0053521/step, 0.0141236 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:     500         0.0000         0.0000         0.0000         0.0000              0.0000     88649.9114         0.0000         0.0000      8922.7372          97572.6486       299.3716     88649.9114     97575.6911       299.8500         309571.3440    309571.3440     99639.2115    309494.2269    309494.2269
+
+ENERGY:     550         0.0000         0.0000         0.0000         0.0000              0.0000     88542.1597         0.0000         0.0000      8960.2497          97502.4093       300.6302     88542.1597     97505.5320       300.4951         309279.2561    309279.2561     99639.2115    309441.7753    309441.7753
+
+Info: Benchmark time: 16 CPUs 0.00429232 s/step 0.0496796 days/ns 5803.3 MB memory
+ENERGY:     600         0.0000         0.0000         0.0000         0.0000              0.0000     88687.2654         0.0000         0.0000      8913.0856          97600.3510       299.0478     88687.2654     97603.2732       299.3100         309672.2467    309672.2467     99639.2115    309369.9852    309369.9852
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 600
+The last position output (seq=600) takes 0.000 seconds, 5803.305 MB of memory in use
+ENERGY:     650         0.0000         0.0000         0.0000         0.0000              0.0000     88673.5453         0.0000         0.0000      8911.8522          97585.3976       299.0064     88673.5453     97588.3961       300.0974         309632.6275    309632.6275     99639.2115    309489.1498    309489.1498
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 700
+The last position output (seq=700) takes 0.000 seconds, 5803.305 MB of memory in use
+Info: Benchmark time: 16 CPUs 0.00428564 s/step 0.0496023 days/ns 5803.3 MB memory
+ENERGY:     700         0.0000         0.0000         0.0000         0.0000              0.0000     88564.4920         0.0000         0.0000      8909.9011          97474.3931       298.9410     88564.4920     97477.4752       300.7386         309315.3132    309315.3132     99639.2115    309562.4759    309562.4759
+
+ENERGY:     750         0.0000         0.0000         0.0000         0.0000              0.0000     88652.1396         0.0000         0.0000      8937.8658          97590.0054       299.8792     88652.1396     97593.0031       299.2424         309584.3450    309584.3450     99639.2115    309536.5123    309536.5123
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 800
+The last position output (seq=800) takes 0.000 seconds, 5803.305 MB of memory in use
+Info: Benchmark time: 16 CPUs 0.00428485 s/step 0.0495931 days/ns 5803.3 MB memory
+ENERGY:     800         0.0000         0.0000         0.0000         0.0000              0.0000     88612.9180         0.0000         0.0000      8900.6972          97513.6152       298.6322     88612.9180     97516.5707       300.4856         309455.5734    309455.5734     99639.2115    309363.3303    309363.3303
+
+ENERGY:     850         0.0000         0.0000         0.0000         0.0000              0.0000     88677.7818         0.0000         0.0000      8872.5149          97550.2967       297.6866     88677.7818     97553.2262       299.7334         309629.3825    309629.3825     99639.2115    309474.7887    309474.7887
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 900
+The last position output (seq=900) takes 0.000 seconds, 5803.305 MB of memory in use
+Info: Benchmark time: 16 CPUs 0.00707724 s/step 0.0819124 days/ns 5803.3 MB memory
+ENERGY:     900         0.0000         0.0000         0.0000         0.0000              0.0000     88652.7671         0.0000         0.0000      9001.2245          97653.9916       302.0050     88652.7671     97657.1446       299.3862         309615.2798    309615.2798     99639.2115    309638.9013    309638.9013
+
+ENERGY:     950         0.0000         0.0000         0.0000         0.0000              0.0000     88630.8600         0.0000         0.0000      8936.1763          97567.0364       299.8225     88630.8600     97570.0433       300.5360         309522.0753    309522.0753     99639.2115    309401.5890    309401.5890
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1000
+The last position output (seq=1000) takes 0.000 seconds, 5803.305 MB of memory in use
+TIMING: 1000  CPU: 5.39114, 0.0053938/step  Wall: 5.40141, 0.0053931/step, 0.0134828 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    1000         0.0000         0.0000         0.0000         0.0000              0.0000     88646.5957         0.0000         0.0000      8974.7182          97621.3139       301.1157     88646.5957     97624.3884       299.6609         309584.0718    309584.0718     99639.2115    309602.1879    309602.1879
+
+ENERGY:    1050         0.0000         0.0000         0.0000         0.0000              0.0000     88555.8667         0.0000         0.0000      8926.4253          97482.2920       299.4954     88555.8667     97485.3600       300.8976         309303.1837    309303.1837     99639.2115    309328.4908    309328.4908
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1100
+ENERGY:    1100         0.0000         0.0000         0.0000         0.0000              0.0000     88611.2545         0.0000         0.0000      8933.5673          97544.8218       299.7350     88611.2545     97547.8429       299.5844         309466.3431    309466.3431     99639.2115    309428.6341    309428.6341
+
+ENERGY:    1150         0.0000         0.0000         0.0000         0.0000              0.0000     88656.6415         0.0000         0.0000      8907.1831          97563.8246       298.8498     88656.6415     97566.8583       299.8541         309588.7829    309588.7829     99639.2115    309510.5268    309510.5268
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1200
+ENERGY:    1200         0.0000         0.0000         0.0000         0.0000              0.0000     88601.5335         0.0000         0.0000      8953.8913          97555.4248       300.4169     88601.5335     97558.4391       300.0850         309446.5308    309446.5308     99639.2115    309577.7041    309577.7041
+
+ENERGY:    1250         0.0000         0.0000         0.0000         0.0000              0.0000     88548.0197         0.0000         0.0000      8947.8239          97495.8436       300.2133     88548.0197     97498.9414       300.3918         309284.9683    309284.9683     99639.2115    309262.0934    309262.0934
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1300
+ENERGY:    1300         0.0000         0.0000         0.0000         0.0000              0.0000     88666.7927         0.0000         0.0000      8926.7654          97593.5581       299.5068     88666.7927     97596.5693       299.3295         309626.0033    309626.0033     99639.2115    309440.5013    309440.5013
+
+ENERGY:    1350         0.0000         0.0000         0.0000         0.0000              0.0000     88580.0984         0.0000         0.0000      8968.8628          97548.9612       300.9192     88580.0984     97552.0817       300.3252         309392.7135    309392.7135     99639.2115    309648.7375    309648.7375
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1400
+ENERGY:    1400         0.0000         0.0000         0.0000         0.0000              0.0000     88675.7610         0.0000         0.0000      8923.2233          97598.9844       299.3880     88675.7610     97601.9834       299.6321         309647.7896    309647.7896     99639.2115    309406.9795    309406.9795
+
+ENERGY:    1450         0.0000         0.0000         0.0000         0.0000              0.0000     88555.9116         0.0000         0.0000      8939.9277          97495.8393       299.9484     88555.9116     97498.9636       300.7005         309311.2334    309311.2334     99639.2115    309601.2836    309601.2836
+
+TIMING: 1500  CPU: 8.50268, 0.00622308/step  Wall: 8.51192, 0.00622103/step, 0.0146885 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    1500         0.0000         0.0000         0.0000         0.0000              0.0000     88489.7661         0.0000         0.0000      8996.0033          97485.7694       301.8298     88489.7661     97488.9269       300.1030         309145.2582    309145.2582     99639.2115    309374.4783    309374.4783
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1500
+ENERGY:    1550         0.0000         0.0000         0.0000         0.0000              0.0000     88622.0332         0.0000         0.0000      8870.5260          97492.5592       297.6199     88622.0332     97495.4960       299.8684         309464.7831    309464.7831     99639.2115    309217.5778    309217.5778
+
+ENERGY:    1600         0.0000         0.0000         0.0000         0.0000              0.0000     88572.1979         0.0000         0.0000      8945.4783          97517.6762       300.1346     88572.1979     97520.7262       299.8789         309356.6046    309356.6046     99639.2115    309438.5566    309438.5566
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1600
+ENERGY:    1650         0.0000         0.0000         0.0000         0.0000              0.0000     88569.2831         0.0000         0.0000      8952.3818          97521.6649       300.3663     88569.2831     97524.7900       299.9774         309347.2893    309347.2893     99639.2115    309382.2636    309382.2636
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1700
+ENERGY:    1700         0.0000         0.0000         0.0000         0.0000              0.0000     88680.3349         0.0000         0.0000      8935.1039          97615.4388       299.7866     88680.3349     97618.4202       299.3578         309665.3397    309665.3397     99639.2115    309455.9003    309455.9003
+
+ENERGY:    1750         0.0000         0.0000         0.0000         0.0000              0.0000     88590.6220         0.0000         0.0000      8931.2512          97521.8732       299.6573     88590.6220     97524.8893       300.6239         309401.0996    309401.0996     99639.2115    309445.9243    309445.9243
+
+ENERGY:    1800         0.0000         0.0000         0.0000         0.0000              0.0000     88614.7676         0.0000         0.0000      8911.7152          97526.4827       299.0018     88614.7676     97529.4395       299.9557         309463.2411    309463.2411     99639.2115    309330.4784    309330.4784
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1800
+ENERGY:    1850         0.0000         0.0000         0.0000         0.0000              0.0000     88582.5084         0.0000         0.0000      8923.7294          97506.2377       299.4049     88582.5084     97509.2738       300.1437         309383.9419    309383.9419     99639.2115    309396.7674    309396.7674
+
+ENERGY:    1900         0.0000         0.0000         0.0000         0.0000              0.0000     88544.1947         0.0000         0.0000      8972.5266          97516.7213       301.0422     88544.1947     97519.8473       299.9614         309294.9283    309294.9283     99639.2115    309367.2030    309367.2030
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 1900
+ENERGY:    1950         0.0000         0.0000         0.0000         0.0000              0.0000     88529.3851         0.0000         0.0000      8943.0884          97472.4735       300.0545     88529.3851     97475.4935       300.2772         309230.7127    309230.7127     99639.2115    309283.2875    309283.2875
+
+TIMING: 2000  CPU: 10.6538, 0.00430221/step  Wall: 10.6637, 0.00430347/step, 0.00956327 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    2000         0.0000         0.0000         0.0000         0.0000              0.0000     88573.2583         0.0000         0.0000      8907.1604          97480.4188       298.8490     88573.2583     97483.4225       299.9216         309341.3226    309341.3226     99639.2115    309278.2394    309278.2394
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2000
+ENERGY:    2050         0.0000         0.0000         0.0000         0.0000              0.0000     88677.3918         0.0000         0.0000      8938.1733          97615.5652       299.8896     88677.3918     97618.5883       299.1128         309664.7181    309664.7181     99639.2115    309546.0654    309546.0654
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2100
+ENERGY:    2100         0.0000         0.0000         0.0000         0.0000              0.0000     88561.5010         0.0000         0.0000      8915.2479          97476.7489       299.1204     88561.5010     97479.7427       300.9126         309313.3332    309313.3332     99639.2115    309516.1538    309516.1538
+
+ENERGY:    2150         0.0000         0.0000         0.0000         0.0000              0.0000     88573.8557         0.0000         0.0000      8934.0567          97507.9124       299.7514     88573.8557     97510.9253       299.8025         309356.8459    309356.8459     99639.2115    309274.0888    309274.0888
+
+ENERGY:    2200         0.0000         0.0000         0.0000         0.0000              0.0000     88533.2176         0.0000         0.0000      8945.7729          97478.9905       300.1445     88533.2176     97482.0690       300.2010         309242.0935    309242.0935     99639.2115    309276.2086    309276.2086
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2200
+ENERGY:    2250         0.0000         0.0000         0.0000         0.0000              0.0000     88577.9995         0.0000         0.0000      8955.0748          97533.0743       300.4566     88577.9995     97536.1702       299.6430         309381.2910    309381.2910     99639.2115    309381.8359    309381.8359
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2300
+ENERGY:    2300         0.0000         0.0000         0.0000         0.0000              0.0000     88579.2676         0.0000         0.0000      8956.0702          97535.3377       300.4900     88579.2676     97538.4043       299.9854         309383.1238    309383.1238     99639.2115    309373.1814    309373.1814
+
+ENERGY:    2350         0.0000         0.0000         0.0000         0.0000              0.0000     88658.2685         0.0000         0.0000      8944.5345          97602.8030       300.1030     88658.2685     97605.8577       299.5392         309608.4471    309608.4471     99639.2115    309452.5174    309452.5174
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2400
+ENERGY:    2400         0.0000         0.0000         0.0000         0.0000              0.0000     88518.2869         0.0000         0.0000      8987.3092          97505.5961       301.5381     88518.2869     97508.7334       300.6790         309220.9341    309220.9341     99639.2115    309480.0784    309480.0784
+
+ENERGY:    2450         0.0000         0.0000         0.0000         0.0000              0.0000     88525.9190         0.0000         0.0000      8894.8223          97420.7413       298.4351     88525.9190     97423.7581       300.5052         309203.5792    309203.5792     99639.2115    309125.8503    309125.8503
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2500
+TIMING: 2500  CPU: 12.8036, 0.00429966/step  Wall: 12.8126, 0.00429781/step, 0.00895376 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    2500         0.0000         0.0000         0.0000         0.0000              0.0000     88577.7609         0.0000         0.0000      8908.2858          97486.0467       298.8868     88577.7609     97489.0217       299.5669         309354.5281    309354.5281     99639.2115    309253.0618    309253.0618
+
+ENERGY:    2550         0.0000         0.0000         0.0000         0.0000              0.0000     88546.2821         0.0000         0.0000      8984.3900          97530.6721       301.4402     88546.2821     97533.7881       299.7514         309302.6826    309302.6826     99639.2115    309354.8067    309354.8067
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2600
+ENERGY:    2600         0.0000         0.0000         0.0000         0.0000              0.0000     88593.3017         0.0000         0.0000      8942.4808          97535.7825       300.0341     88593.3017     97538.8491       299.9339         309419.1560    309419.1560     99639.2115    309214.4825    309214.4825
+
+ENERGY:    2650         0.0000         0.0000         0.0000         0.0000              0.0000     88576.8770         0.0000         0.0000      8917.8394          97494.7164       299.2073     88576.8770     97497.8645       300.2588         309359.1934    309359.1934     99639.2115    309341.7539    309341.7539
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2700
+ENERGY:    2700         0.0000         0.0000         0.0000         0.0000              0.0000     88528.9217         0.0000         0.0000      8952.5989          97481.5207       300.3736     88528.9217     97484.5826       300.1071         309237.0270    309237.0270     99639.2115    309360.4193    309360.4193
+
+ENERGY:    2750         0.0000         0.0000         0.0000         0.0000              0.0000     88631.0606         0.0000         0.0000      8928.3372          97559.3978       299.5595     88631.0606     97562.4051       299.4606         309516.8715    309516.8715     99639.2115    309373.1171    309373.1171
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2800
+ENERGY:    2800         0.0000         0.0000         0.0000         0.0000              0.0000     88516.4422         0.0000         0.0000      8992.7942          97509.2364       301.7222     88516.4422     97512.3949       300.3772         309217.6657    309217.6657     99639.2115    309380.4416    309380.4416
+
+ENERGY:    2850         0.0000         0.0000         0.0000         0.0000              0.0000     88573.4710         0.0000         0.0000      8919.0170          97492.4879       299.2468     88573.4710     97495.5342       300.0623         309351.0015    309351.0015     99639.2115    309232.0801    309232.0801
+
+ENERGY:    2900         0.0000         0.0000         0.0000         0.0000              0.0000     88535.5819         0.0000         0.0000      8963.6416          97499.2234       300.7441     88535.5819     97502.3676       299.9837         309263.9155    309263.9155     99639.2115    309395.1744    309395.1744
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 2900
+ENERGY:    2950         0.0000         0.0000         0.0000         0.0000              0.0000     88599.9267         0.0000         0.0000      8930.6576          97530.5843       299.6374     88599.9267     97533.5617       299.7682         309432.6969    309432.6969     99639.2115    309345.9169    309345.9169
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3000
+TIMING: 3000  CPU: 14.9489, 0.0042906/step  Wall: 14.9574, 0.00428977/step, 0.00834122 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    3000         0.0000         0.0000         0.0000         0.0000              0.0000     88604.3136         0.0000         0.0000      8902.2223          97506.5359       298.6833     88604.3136     97509.5293       300.1415         309432.4017    309432.4017     99639.2115    309324.7318    309324.7318
+
+ENERGY:    3050         0.0000         0.0000         0.0000         0.0000              0.0000     88432.3799         0.0000         0.0000      8990.9994          97423.3793       301.6619     88432.3799     97426.5999       300.6126         308975.1135    308975.1135     99639.2115    309349.6993    309349.6993
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3100
+ENERGY:    3100         0.0000         0.0000         0.0000         0.0000              0.0000     88571.2091         0.0000         0.0000      8965.9346          97537.1437       300.8210     88571.2091     97540.1705       299.2216         309364.4158    309364.4158     99639.2115    309227.2299    309227.2299
+
+ENERGY:    3150         0.0000         0.0000         0.0000         0.0000              0.0000     88590.0518         0.0000         0.0000      8941.8001          97531.8520       300.0112     88590.0518     97534.9039       300.0180         309408.9334    309408.9334     99639.2115    309307.8153    309307.8153
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3200
+ENERGY:    3200         0.0000         0.0000         0.0000         0.0000              0.0000     88550.1114         0.0000         0.0000      8964.4664          97514.5778       300.7717     88550.1114     97517.7016       300.1299         309306.7826    309306.7826     99639.2115    309304.3267    309304.3267
+
+ENERGY:    3250         0.0000         0.0000         0.0000         0.0000              0.0000     88536.5630         0.0000         0.0000      8935.1329          97471.6959       299.7875     88536.5630     97474.7018       300.2683         309255.0111    309255.0111     99639.2115    309329.7825    309329.7825
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3300
+ENERGY:    3300         0.0000         0.0000         0.0000         0.0000              0.0000     88483.6368         0.0000         0.0000      8912.2602          97395.8970       299.0201     88483.6368     97398.9079       300.4913         309085.6503    309085.6503     99639.2115    309050.7995    309050.7995
+
+ENERGY:    3350         0.0000         0.0000         0.0000         0.0000              0.0000     88587.4751         0.0000         0.0000      8949.0191          97536.4943       300.2534     88587.4751     97539.5564       299.0777         309401.8404    309401.8404     99639.2115    309403.8952    309403.8952
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3400
+ENERGY:    3400         0.0000         0.0000         0.0000         0.0000              0.0000     88480.5697         0.0000         0.0000      8976.3091          97456.8788       301.1691     88480.5697     97459.9493       300.5517         309108.0963    309108.0963     99639.2115    309248.2644    309248.2644
+
+ENERGY:    3450         0.0000         0.0000         0.0000         0.0000              0.0000     88459.0974         0.0000         0.0000      8932.0865          97391.1838       299.6853     88459.0974     97394.2355       300.4077         309022.5844    309022.5844     99639.2115    309081.9494    309081.9494
+
+TIMING: 3500  CPU: 17.1, 0.00430211/step  Wall: 17.1081, 0.00430123/step, 0.00776611 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    3500         0.0000         0.0000         0.0000         0.0000              0.0000     88533.4398         0.0000         0.0000      8948.1818          97481.6217       300.2254     88533.4398     97484.6973       299.4034         309244.3976    309244.3976     99639.2115    309160.6283    309160.6283
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3500
+ENERGY:    3550         0.0000         0.0000         0.0000         0.0000              0.0000     88537.8051         0.0000         0.0000      8967.2587          97505.0637       300.8654     88537.8051     97508.2153       299.8554         309271.1117    309271.1117     99639.2115    309300.2503    309300.2503
+
+ENERGY:    3600         0.0000         0.0000         0.0000         0.0000              0.0000     88657.1194         0.0000         0.0000      8908.1179          97565.2372       298.8811     88657.1194     97568.2106       299.5551         309585.2827    309585.2827     99639.2115    309314.0264    309314.0264
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3600
+ENERGY:    3650         0.0000         0.0000         0.0000         0.0000              0.0000     88543.2675         0.0000         0.0000      8956.8451          97500.1125       300.5160     88543.2675     97503.2230       300.4639         309280.0538    309280.0538     99639.2115    309304.8076    309304.8076
+
+ENERGY:    3700         0.0000         0.0000         0.0000         0.0000              0.0000     88533.1831         0.0000         0.0000      8928.1645          97461.3476       299.5537     88533.1831     97464.3853       300.2407         309235.3285    309235.3285     99639.2115    309255.4121    309255.4121
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3700
+ENERGY:    3750         0.0000         0.0000         0.0000         0.0000              0.0000     88495.2673         0.0000         0.0000      8919.3962          97414.6635       299.2595     88495.2673     97417.7018       300.3066         309125.3305    309125.3305     99639.2115    309191.1490    309191.1490
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3800
+ENERGY:    3800         0.0000         0.0000         0.0000         0.0000              0.0000     88580.7326         0.0000         0.0000      8928.8806          97509.6132       299.5778     88580.7326     97512.6837       299.3680         309375.2321    309375.2321     99639.2115    309298.3937    309298.3937
+
+ENERGY:    3850         0.0000         0.0000         0.0000         0.0000              0.0000     88563.3473         0.0000         0.0000      8925.2567          97488.6040       299.4562     88563.3473     97491.6039       300.1361         309320.8047    309320.8047     99639.2115    309293.7609    309293.7609
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 3900
+ENERGY:    3900         0.0000         0.0000         0.0000         0.0000              0.0000     88504.5892         0.0000         0.0000      8941.6581          97446.2473       300.0065     88504.5892     97449.3515       300.2937         309157.0906    309157.0906     99639.2115    309191.8388    309191.8388
+
+ENERGY:    3950         0.0000         0.0000         0.0000         0.0000              0.0000     88544.2997         0.0000         0.0000      8956.9546          97501.2543       300.5197     88544.2997     97504.3402       299.6414         309280.6865    309280.6865     99639.2115    309196.5536    309196.5536
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4000
+TIMING: 4000  CPU: 19.2479, 0.00429583/step  Wall: 19.2556, 0.00429507/step, 0.00715845 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    4000         0.0000         0.0000         0.0000         0.0000              0.0000     88587.8054         0.0000         0.0000      8920.7934          97508.5988       299.3064     88587.8054     97511.6165       299.9259         309393.9197    309393.9197     99639.2115    309252.0378    309252.0378
+
+ENERGY:    4050         0.0000         0.0000         0.0000         0.0000              0.0000     88516.2411         0.0000         0.0000      8950.9711          97467.2123       300.3189     88516.2411     97470.2995       300.2933         309199.4155    309199.4155     99639.2115    309146.7649    309146.7649
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4100
+ENERGY:    4100         0.0000         0.0000         0.0000         0.0000              0.0000     88500.3084         0.0000         0.0000      8970.6464          97470.9548       300.9791     88500.3084     97474.0706       299.9871         309160.3561    309160.3561     99639.2115    309273.4226    309273.4226
+
+ENERGY:    4150         0.0000         0.0000         0.0000         0.0000              0.0000     88529.5608         0.0000         0.0000      8926.4048          97455.9656       299.4947     88529.5608     97459.0518       300.0693         309223.2987    309223.2987     99639.2115    309118.1109    309118.1109
+
+ENERGY:    4200         0.0000         0.0000         0.0000         0.0000              0.0000     88503.7484         0.0000         0.0000      8922.9770          97426.7254       299.3797     88503.7484     97429.7886       300.1929         309149.3258    309149.3258     99639.2115    309212.6152    309212.6152
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4200
+ENERGY:    4250         0.0000         0.0000         0.0000         0.0000              0.0000     88513.0956         0.0000         0.0000      8931.9565          97445.0521       299.6810     88513.0956     97448.1217       299.8822         309183.3453    309183.3453     99639.2115    309240.5581    309240.5581
+
+LDB: ============= START OF LOAD BALANCING ============== 20.6089
+LDB: ============== END OF LOAD BALANCING =============== 20.609
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 20.6091
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4300
+ENERGY:    4300         0.0000         0.0000         0.0000         0.0000              0.0000     88499.6314         0.0000         0.0000      8973.0326          97472.6641       301.0591     88499.6314     97475.8061       299.8409         309157.4556    309157.4556     99639.2115    309249.8976    309249.8976
+
+ENERGY:    4350         0.0000         0.0000         0.0000         0.0000              0.0000     88492.6142         0.0000         0.0000      8905.3132          97397.9273       298.7870     88492.6142     97400.9157       300.4556         309111.1682    309111.1682     99639.2115    309139.0738    309139.0738
+
+LDB: ============= START OF LOAD BALANCING ============== 21.0403
+LDB: Largest compute 8 load 0.035407 is 8.6% of average load 0.413363
+LDB: Average compute 0.010700 is 2.6% of average load 0.413363
+LDB: TIME 21.0407 LOAD: AVG 0.413363 MAX 0.429829  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 None MEM: 5803.3 MB
+LDB: TIME 21.0408 LOAD: AVG 0.413363 MAX 0.429829  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 RefineTorusLB MEM: 5803.3 MB
+LDB: TIME 21.0409 LOAD: AVG 0.413363 MAX 0.427391  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 RefineTorusLB MEM: 5803.3 MB
+LDB: ============== END OF LOAD BALANCING =============== 21.0411
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 21.0414
+ENERGY:    4400         0.0000         0.0000         0.0000         0.0000              0.0000     88453.2707         0.0000         0.0000      8977.4342          97430.7049       301.2068     88453.2707     97433.8852       299.8262         309029.8511    309029.8511     99639.2115    309147.8352    309147.8352
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4400
+ENERGY:    4450         0.0000         0.0000         0.0000         0.0000              0.0000     88386.8857         0.0000         0.0000      8937.4951          97324.3808       299.8668     88386.8857     97327.4760       300.6845         308817.3665    308817.3665     99639.2115    309027.8613    309027.8613
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4500
+TIMING: 4500  CPU: 21.4008, 0.0043058/step  Wall: 21.408, 0.00430481/step, 0.00657679 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    4500         0.0000         0.0000         0.0000         0.0000              0.0000     88432.5914         0.0000         0.0000      8991.1803          97423.7717       301.6680     88432.5914     97426.8943       299.3645         308976.3280    308976.3280     99639.2115    309122.0215    309122.0215
+
+ENERGY:    4550         0.0000         0.0000         0.0000         0.0000              0.0000     88584.4449         0.0000         0.0000      8904.2414          97488.6862       298.7511     88584.4449     97491.6744       299.5039         309369.2798    309369.2798     99639.2115    309028.8300    309028.8300
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4600
+ENERGY:    4600         0.0000         0.0000         0.0000         0.0000              0.0000     88460.2359         0.0000         0.0000      8956.0081          97416.2440       300.4879     88460.2359     97419.3124       300.5196         309040.4966    309040.4966     99639.2115    309194.2295    309194.2295
+
+ENERGY:    4650         0.0000         0.0000         0.0000         0.0000              0.0000     88481.4902         0.0000         0.0000      8941.6314          97423.1217       300.0056     88481.4902     97426.1847       299.9428         309092.6927    309092.6927     99639.2115    309107.0859    309107.0859
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4700
+ENERGY:    4700         0.0000         0.0000         0.0000         0.0000              0.0000     88496.5251         0.0000         0.0000      9011.0933          97507.6184       302.3361     88496.5251     97510.7715       299.4774         309169.9078    309169.9078     99639.2115    309277.2999    309277.2999
+
+ENERGY:    4750         0.0000         0.0000         0.0000         0.0000              0.0000     88541.3278         0.0000         0.0000      8938.3581          97479.6858       299.8957     88541.3278     97482.7488       300.1361         309266.9419    309266.9419     99639.2115    309134.2191    309134.2191
+
+ENERGY:    4800         0.0000         0.0000         0.0000         0.0000              0.0000     88479.2986         0.0000         0.0000      8909.7114          97389.0100       298.9346     88479.2986     97392.0477       300.5877         309075.0757    309075.0757     99639.2115    309090.7079    309090.7079
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4800
+ENERGY:    4850         0.0000         0.0000         0.0000         0.0000              0.0000     88527.3810         0.0000         0.0000      8907.1566          97434.5377       298.8489     88527.3810     97437.4872       299.6898         309211.3073    309211.3073     99639.2115    309097.1964    309097.1964
+
+ENERGY:    4900         0.0000         0.0000         0.0000         0.0000              0.0000     88534.2741         0.0000         0.0000      8944.9717          97479.2459       300.1176     88534.2741     97482.2284       299.7252         309245.1927    309245.1927     99639.2115    309146.2106    309146.2106
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 4900
+ENERGY:    4950         0.0000         0.0000         0.0000         0.0000              0.0000     88508.9735         0.0000         0.0000      8948.9075          97457.8810       300.2497     88508.9735     97460.8533       300.1447         309180.0305    309180.0305     99639.2115    309178.0179    309178.0179
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5000
+TIMING: 5000  CPU: 23.5327, 0.00426389/step  Wall: 23.5397, 0.00426338/step, 0.00592136 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    5000         0.0000         0.0000         0.0000         0.0000              0.0000     88359.5810         0.0000         0.0000      8978.6864          97338.2674       301.2488     88359.5810     97341.4288       300.8187         308756.8168    308756.8168     99639.2115    308994.2644    308994.2644
+
+ENERGY:    5050         0.0000         0.0000         0.0000         0.0000              0.0000     88506.8395         0.0000         0.0000      8909.1545          97415.9940       298.9159     88506.8395     97418.9512       299.4318         309151.6104    309151.6104     99639.2115    308918.3058    308918.3058
+
+ENERGY:    5100         0.0000         0.0000         0.0000         0.0000              0.0000     88374.3577         0.0000         0.0000      8936.2616          97310.6193       299.8254     88374.3577     97313.7638       300.7227         308777.4087    308777.4087     99639.2115    309037.8584    309037.8584
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5100
+ENERGY:    5150         0.0000         0.0000         0.0000         0.0000              0.0000     88442.0329         0.0000         0.0000      8949.1160          97391.1488       300.2567     88442.0329     97394.2286       299.4662         308979.8817    308979.8817     99639.2115    309055.2766    309055.2766
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5200
+ENERGY:    5200         0.0000         0.0000         0.0000         0.0000              0.0000     88513.1654         0.0000         0.0000      8891.8927          97405.0581       298.3368     88513.1654     97408.0198       299.8681         309162.9289    309162.9289     99639.2115    309000.1477    309000.1477
+
+ENERGY:    5250         0.0000         0.0000         0.0000         0.0000              0.0000     88461.6489         0.0000         0.0000      8956.8436          97418.4925       300.5160     88461.6489     97421.5425       299.9517         309041.3452    309041.3452     99639.2115    309139.2517    309139.2517
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5300
+ENERGY:    5300         0.0000         0.0000         0.0000         0.0000              0.0000     88438.7740         0.0000         0.0000      8950.5551          97389.3291       300.3050     88438.7740     97392.4418       300.1900         308973.5023    308973.5023     99639.2115    308963.2503    308963.2503
+
+ENERGY:    5350         0.0000         0.0000         0.0000         0.0000              0.0000     88559.0086         0.0000         0.0000      8940.8904          97499.8990       299.9807     88559.0086     97502.9278       299.2518         309314.5004    309314.5004     99639.2115    309179.8622    309179.8622
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5400
+ENERGY:    5400         0.0000         0.0000         0.0000         0.0000              0.0000     88504.6669         0.0000         0.0000      8923.2071          97427.8740       299.3874     88504.6669     97430.8684       300.4707         309150.5707    309150.5707     99639.2115    309160.3784    309160.3784
+
+ENERGY:    5450         0.0000         0.0000         0.0000         0.0000              0.0000     88460.7299         0.0000         0.0000      8930.8774          97391.6074       299.6448     88460.7299     97394.5698       300.2469         309026.3379    309026.3379     99639.2115    308989.3463    308989.3463
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5500
+TIMING: 5500  CPU: 25.6652, 0.00426483/step  Wall: 25.6718, 0.00426419/step, 0.00533024 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    5500         0.0000         0.0000         0.0000         0.0000              0.0000     88472.5838         0.0000         0.0000      8936.3952          97408.9789       299.8299     88472.5838     97411.9921       299.8871         309062.8914    309062.8914     99639.2115    308975.1595    308975.1595
+
+ENERGY:    5550         0.0000         0.0000         0.0000         0.0000              0.0000     88508.9164         0.0000         0.0000      8859.4050          97368.3214       297.2467     88508.9164     97371.2336       300.2196         309133.6219    309133.6219     99639.2115    308956.5215    308956.5215
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5600
+ENERGY:    5600         0.0000         0.0000         0.0000         0.0000              0.0000     88457.0456         0.0000         0.0000      8965.6689          97422.7145       300.8121     88457.0456     97425.7679       299.7003         309034.7624    309034.7624     99639.2115    309123.4105    309123.4105
+
+ENERGY:    5650         0.0000         0.0000         0.0000         0.0000              0.0000     88504.9780         0.0000         0.0000      8926.7757          97431.7538       299.5071     88504.9780     97434.7823       299.9134         309156.9087    309156.9087     99639.2115    309080.0771    309080.0771
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5700
+ENERGY:    5700         0.0000         0.0000         0.0000         0.0000              0.0000     88368.2819         0.0000         0.0000      8951.9866          97320.2685       300.3530     88368.2819     97323.3485       300.7623         308771.2921    308771.2921     99639.2115    309050.5802    309050.5802
+
+ENERGY:    5750         0.0000         0.0000         0.0000         0.0000              0.0000     88541.2852         0.0000         0.0000      8969.9042          97511.1893       300.9542     88541.2852     97514.2755       298.7272         309278.5064    309278.5064     99639.2115    309101.3208    309101.3208
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5800
+ENERGY:    5800         0.0000         0.0000         0.0000         0.0000              0.0000     88475.2459         0.0000         0.0000      8938.1752          97413.4211       299.8896     88475.2459     97416.4427       300.6336         309068.9071    309068.9071     99639.2115    309119.6892    309119.6892
+
+ENERGY:    5850         0.0000         0.0000         0.0000         0.0000              0.0000     88443.3621         0.0000         0.0000      8943.4845          97386.8466       300.0677     88443.3621     97389.9357       300.1812         308977.8653    308977.8653     99639.2115    309040.1349    309040.1349
+
+ENERGY:    5900         0.0000         0.0000         0.0000         0.0000              0.0000     88422.7435         0.0000         0.0000      8924.7784          97347.5219       299.4401     88422.7435     97350.5241       300.2501         308916.3791    308916.3791     99639.2115    308902.2793    308902.2793
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 5900
+ENERGY:    5950         0.0000         0.0000         0.0000         0.0000              0.0000     88583.6016         0.0000         0.0000      8930.6059          97514.2075       299.6357     88583.6016     97517.1708       298.8845         309375.0392    309375.0392     99639.2115    309113.3453    309113.3453
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6000
+TIMING: 6000  CPU: 27.8008, 0.00427134/step  Wall: 27.8069, 0.00427019/step, 0.00474466 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    6000         0.0000         0.0000         0.0000         0.0000              0.0000     88474.7610         0.0000         0.0000      8959.4473          97434.2083       300.6033     88474.7610     97437.3105       300.5540         309081.6889    309081.6889     99639.2115    309172.9915    309172.9915
+
+ENERGY:    6050         0.0000         0.0000         0.0000         0.0000              0.0000     88482.9867         0.0000         0.0000      8916.1977          97399.1844       299.1522     88482.9867     97402.1619       300.2059         309086.8109    309086.8109     99639.2115    309070.5585    309070.5585
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6100
+ENERGY:    6100         0.0000         0.0000         0.0000         0.0000              0.0000     88491.0905         0.0000         0.0000      8957.7955          97448.8860       300.5479     88491.0905     97451.9542       299.6938         309126.9507    309126.9507     99639.2115    309162.6526    309162.6526
+
+ENERGY:    6150         0.0000         0.0000         0.0000         0.0000              0.0000     88480.1744         0.0000         0.0000      8932.5448          97412.7192       299.7007     88480.1744     97415.7699       300.2257         309084.3392    309084.3392     99639.2115    309087.0087    309087.0087
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6200
+ENERGY:    6200         0.0000         0.0000         0.0000         0.0000              0.0000     88441.2218         0.0000         0.0000      8907.9016          97349.1234       298.8739     88441.2218     97352.1653       300.4093         308963.4354    308963.4354     99639.2115    308995.7777    308995.7777
+
+ENERGY:    6250         0.0000         0.0000         0.0000         0.0000              0.0000     88451.8158         0.0000         0.0000      8943.0401          97394.8559       300.0528     88451.8158     97397.9832       299.7139         309004.9267    309004.9267     99639.2115    309142.4917    309142.4917
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6300
+ENERGY:    6300         0.0000         0.0000         0.0000         0.0000              0.0000     88609.7613         0.0000         0.0000      8954.2894          97564.0506       300.4303     88609.7613     97567.0654       298.8719         309469.6028    309469.6028     99639.2115    309235.8171    309235.8171
+
+ENERGY:    6350         0.0000         0.0000         0.0000         0.0000              0.0000     88449.8509         0.0000         0.0000      8913.3526          97363.2036       299.0568     88449.8509     97366.2189       301.3152         308987.6700    308987.6700     99639.2115    309066.9101    309066.9101
+
+ENERGY:    6400         0.0000         0.0000         0.0000         0.0000              0.0000     88511.1132         0.0000         0.0000      8949.8647          97460.9778       300.2818     88511.1132     97464.0277       299.3682         309187.6044    309187.6044     99639.2115    309128.3061    309128.3061
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6400
+ENERGY:    6450         0.0000         0.0000         0.0000         0.0000              0.0000     88393.8718         0.0000         0.0000      8954.0467          97347.9186       300.4221     88393.8718     97351.0406       300.7591         308844.6714    308844.6714     99639.2115    308998.8392    308998.8392
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6500
+TIMING: 6500  CPU: 29.9299, 0.00425825/step  Wall: 29.9359, 0.00425797/step, 0.0041397 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    6500         0.0000         0.0000         0.0000         0.0000              0.0000     88460.1924         0.0000         0.0000      8957.5481          97417.7405       300.5396     88460.1924     97420.8592       299.5334         309030.6031    309030.6031     99639.2115    309029.8625    309029.8625
+
+ENERGY:    6550         0.0000         0.0000         0.0000         0.0000              0.0000     88395.4087         0.0000         0.0000      8920.6605          97316.0692       299.3020     88395.4087     97319.1361       300.6555         308829.9472    308829.9472     99639.2115    308894.6150    308894.6150
+
+ENERGY:    6600         0.0000         0.0000         0.0000         0.0000              0.0000     88569.8701         0.0000         0.0000      8873.1852          97443.0553       297.7091     88569.8701     97445.9810       299.1082         309313.6861    309313.6861     99639.2115    308913.3277    308913.3277
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6600
+ENERGY:    6650         0.0000         0.0000         0.0000         0.0000              0.0000     88398.6152         0.0000         0.0000      9002.7528          97401.3681       302.0563     88398.6152     97404.5660       300.3588         308878.6818    308878.6818     99639.2115    309311.9023    309311.9023
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6700
+ENERGY:    6700         0.0000         0.0000         0.0000         0.0000              0.0000     88483.1725         0.0000         0.0000      8898.2991          97381.4715       298.5517     88483.1725     97384.4706       300.0633         309075.0677    309075.0677     99639.2115    308962.8101    308962.8101
+
+ENERGY:    6750         0.0000         0.0000         0.0000         0.0000              0.0000     88436.2888         0.0000         0.0000      8943.5278          97379.8166       300.0692     88436.2888     97382.9200       300.0406         308959.8054    308959.8054     99639.2115    309031.8540    309031.8540
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6800
+ENERGY:    6800         0.0000         0.0000         0.0000         0.0000              0.0000     88435.9021         0.0000         0.0000      8968.1701          97404.0723       300.8960     88435.9021     97407.2067       299.8533         308968.4832    308968.4832     99639.2115    309072.6358    309072.6358
+
+ENERGY:    6850         0.0000         0.0000         0.0000         0.0000              0.0000     88442.3041         0.0000         0.0000      8981.6094          97423.9135       301.3469     88442.3041     97427.0437       299.8729         309001.8633    309001.8633     99639.2115    309125.6233    309125.6233
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 6900
+ENERGY:    6900         0.0000         0.0000         0.0000         0.0000              0.0000     88398.2910         0.0000         0.0000      8970.0866          97368.3776       300.9603     88398.2910     97371.5512       300.3633         308864.2697    308864.2697     99639.2115    308956.5841    308956.5841
+
+ENERGY:    6950         0.0000         0.0000         0.0000         0.0000              0.0000     88387.7490         0.0000         0.0000      8965.4311          97353.1801       300.8041     88387.7490     97356.3307       300.0960         308835.1557    308835.1557     99639.2115    309028.4232    309028.4232
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7000
+TIMING: 7000  CPU: 32.0614, 0.00426281/step  Wall: 32.0669, 0.00426199/step, 0.00355166 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    7000         0.0000         0.0000         0.0000         0.0000              0.0000     88452.3655         0.0000         0.0000      8941.1575          97393.5231       299.9897     88452.3655     97396.5582       299.7135         309004.4831    309004.4831     99639.2115    308986.0566    308986.0566
+
+ENERGY:    7050         0.0000         0.0000         0.0000         0.0000              0.0000     88435.9487         0.0000         0.0000      8932.0261          97367.9748       299.6833     88435.9487     97370.9326       300.1649         308962.3926    308962.3926     99639.2115    308902.7371    308902.7371
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7100
+ENERGY:    7100         0.0000         0.0000         0.0000         0.0000              0.0000     88449.0642         0.0000         0.0000      8991.5070          97440.5712       301.6790     88449.0642     97443.6685       299.5493         309019.8652    309019.8652     99639.2115    309050.4799    309050.4799
+
+ENERGY:    7150         0.0000         0.0000         0.0000         0.0000              0.0000     88583.4987         0.0000         0.0000      8930.8024          97514.3011       299.6422     88583.4987     97517.2916       299.4611         309380.3641    309380.3641     99639.2115    309063.5392    309063.5392
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7200
+ENERGY:    7200         0.0000         0.0000         0.0000         0.0000              0.0000     88446.2958         0.0000         0.0000      8968.8660          97415.1618       300.9193     88446.2958     97418.2883       300.6888         309001.2075    309001.2075     99639.2115    309203.0685    309203.0685
+
+ENERGY:    7250         0.0000         0.0000         0.0000         0.0000              0.0000     88471.2697         0.0000         0.0000      8975.5033          97446.7730       301.1420     88471.2697     97449.8756       299.7921         309078.7330    309078.7330     99639.2115    309032.5658    309032.5658
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7300
+ENERGY:    7300         0.0000         0.0000         0.0000         0.0000              0.0000     88436.5423         0.0000         0.0000      8937.4402          97373.9825       299.8650     88436.5423     97376.9870       300.4618         308959.0955    308959.0955     99639.2115    309063.3012    309063.3012
+
+ENERGY:    7350         0.0000         0.0000         0.0000         0.0000              0.0000     88363.1212         0.0000         0.0000      8927.9262          97291.0474       299.5457     88363.1212     97294.0538       300.5479         308734.9175    308734.9175     99639.2115    308899.4806    308899.4806
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7400
+ENERGY:    7400         0.0000         0.0000         0.0000         0.0000              0.0000     88519.0214         0.0000         0.0000      8913.6411          97432.6625       299.0665     88519.0214     97435.6217       299.0386         309177.3854    309177.3854     99639.2115    308898.6627    308898.6627
+
+ENERGY:    7450         0.0000         0.0000         0.0000         0.0000              0.0000     88422.4255         0.0000         0.0000      8933.3395          97355.7650       299.7274     88422.4255     97358.7990       300.5268         308917.2461    308917.2461     99639.2115    309023.8179    309023.8179
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7500
+TIMING: 7500  CPU: 34.2181, 0.00431348/step  Wall: 34.223, 0.00431233/step, 0.00299468 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    7500         0.0000         0.0000         0.0000         0.0000              0.0000     88464.9531         0.0000         0.0000      8930.2288          97395.1819       299.6230     88464.9531     97398.2209       299.7336         309044.5535    309044.5535     99639.2115    308988.9486    308988.9486
+
+ENERGY:    7550         0.0000         0.0000         0.0000         0.0000              0.0000     88463.5833         0.0000         0.0000      8936.3750          97399.9584       299.8292     88463.5833     97403.0109       299.9699         309029.7905    309029.7905     99639.2115    309167.8881    309167.8881
+
+ENERGY:    7600         0.0000         0.0000         0.0000         0.0000              0.0000     88435.3097         0.0000         0.0000      8977.9169          97413.2266       301.2230     88435.3097     97416.2593       299.9384         308976.0324    308976.0324     99639.2115    309022.6335    309022.6335
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7600
+ENERGY:    7650         0.0000         0.0000         0.0000         0.0000              0.0000     88466.0337         0.0000         0.0000      8920.9572          97386.9910       299.3119     88466.0337     97389.9479       300.1356         309034.6711    309034.6711     99639.2115    308993.8435    308993.8435
+
+ENERGY:    7700         0.0000         0.0000         0.0000         0.0000              0.0000     88439.7086         0.0000         0.0000      8967.7075          97407.4161       300.8805     88439.7086     97410.5296       299.8916         308982.7630    308982.7630     99639.2115    309087.5325    309087.5325
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7700
+ENERGY:    7750         0.0000         0.0000         0.0000         0.0000              0.0000     88439.5251         0.0000         0.0000      8951.7173          97391.2424       300.3440     88439.5251     97394.3223       300.0978         308976.2795    308976.2795     99639.2115    308997.2222    308997.2222
+
+ENERGY:    7800         0.0000         0.0000         0.0000         0.0000              0.0000     88467.8418         0.0000         0.0000      8928.7283          97396.5700       299.5727     88467.8418     97399.5585       299.9484         309051.7705    309051.7705     99639.2115    309044.2864    309044.2864
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7800
+ENERGY:    7850         0.0000         0.0000         0.0000         0.0000              0.0000     88469.9014         0.0000         0.0000      8946.3362          97416.2376       300.1634     88469.9014     97419.3230       299.8774         309064.9033    309064.9033     99639.2115    309034.1381    309034.1381
+
+ENERGY:    7900         0.0000         0.0000         0.0000         0.0000              0.0000     88520.9294         0.0000         0.0000      8993.3150          97514.2444       301.7396     88520.9294     97517.3398       299.3736         309230.5936    309230.5936     99639.2115    309196.0087    309196.0087
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 7900
+ENERGY:    7950         0.0000         0.0000         0.0000         0.0000              0.0000     88383.3002         0.0000         0.0000      8892.1494          97275.4496       298.3454     88383.3002     97278.4526       301.5286         308782.5103    308782.5103     99639.2115    308828.0652    308828.0652
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8000
+TIMING: 8000  CPU: 37.6301, 0.00682409/step  Wall: 37.6341, 0.00682223/step, 0.00379013 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    8000         0.0000         0.0000         0.0000         0.0000              0.0000     88480.6562         0.0000         0.0000      8945.5165          97426.1728       300.1359     88480.6562     97429.2034       299.0228         309090.3706    309090.3706     99639.2115    309037.5098    309037.5098
+
+ENERGY:    8050         0.0000         0.0000         0.0000         0.0000              0.0000     88483.5218         0.0000         0.0000      8938.8492          97422.3710       299.9122     88483.5218     97425.4389       300.0208         309092.7338    309092.7338     99639.2115    309072.0359    309072.0359
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8100
+ENERGY:    8100         0.0000         0.0000         0.0000         0.0000              0.0000     88397.5977         0.0000         0.0000      8904.3164          97301.9140       298.7536     88397.5977     97304.9682       300.7799         308829.0316    308829.0316     99639.2115    309065.7544    309065.7544
+
+ENERGY:    8150         0.0000         0.0000         0.0000         0.0000              0.0000     88415.8144         0.0000         0.0000      8963.8533          97379.6677       300.7512     88415.8144     97382.7614       299.5168         308915.3617    308915.3617     99639.2115    308926.2805    308926.2805
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8200
+ENERGY:    8200         0.0000         0.0000         0.0000         0.0000              0.0000     88440.4075         0.0000         0.0000      8974.0844          97414.4919       301.0944     88440.4075     97417.5996       299.7729         308986.7086    308986.7086     99639.2115    309031.1449    309031.1449
+
+ENERGY:    8250         0.0000         0.0000         0.0000         0.0000              0.0000     88384.7983         0.0000         0.0000      8941.3872          97326.1855       299.9974     88384.7983     97329.2324       300.5695         308807.0974    308807.0974     99639.2115    308909.6917    308909.6917
+
+LDB: ============= START OF LOAD BALANCING ============== 38.9743
+LDB: ============== END OF LOAD BALANCING =============== 38.9744
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 38.9745
+ENERGY:    8300         0.0000         0.0000         0.0000         0.0000              0.0000     88444.6341         0.0000         0.0000      8945.7291          97390.3632       300.1431     88444.6341     97393.4046       299.5725         308981.4023    308981.4023     99639.2115    308906.9893    308906.9893
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8300
+ENERGY:    8350         0.0000         0.0000         0.0000         0.0000              0.0000     88509.2404         0.0000         0.0000      8944.1612          97453.4016       300.0905     88509.2404     97456.4181       299.5741         309173.7423    309173.7423     99639.2115    308951.5242    308951.5242
+
+LDB: ============= START OF LOAD BALANCING ============== 39.4017
+LDB: Largest compute 15 load 0.035630 is 8.6% of average load 0.413404
+LDB: Average compute 0.010701 is 2.6% of average load 0.413404
+LDB: TIME 39.4021 LOAD: AVG 0.413404 MAX 0.427238  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 None MEM: 5803.3 MB
+LDB: TIME 39.4023 LOAD: AVG 0.413404 MAX 0.427238  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 RefineTorusLB MEM: 5803.3 MB
+LDB: TIME 39.4023 LOAD: AVG 0.413404 MAX 0.427238  PROXIES: TOTAL 145 MAXPE 10 MAXPATCH 7 RefineTorusLB MEM: 5803.3 MB
+LDB: ============== END OF LOAD BALANCING =============== 39.4025
+Info: useSync: 0 useProxySync: 0
+LDB: =============== DONE WITH MIGRATION ================ 39.4028
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8400
+ENERGY:    8400         0.0000         0.0000         0.0000         0.0000              0.0000     88432.1691         0.0000         0.0000      8931.5206          97363.6897       299.6663     88432.1691     97366.6953       300.5925         308943.1673    308943.1673     99639.2115    308995.7527    308995.7527
+
+ENERGY:    8450         0.0000         0.0000         0.0000         0.0000              0.0000     88459.9195         0.0000         0.0000      8910.2661          97370.1856       298.9532     88459.9195     97373.1568       299.9423         309012.6377    309012.6377     99639.2115    308921.3923    308921.3923
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8500
+TIMING: 8500  CPU: 39.7647, 0.00426914/step  Wall: 39.7686, 0.00426898/step, 0.00177874 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    8500         0.0000         0.0000         0.0000         0.0000              0.0000     88495.9117         0.0000         0.0000      8938.4433          97434.3550       299.8986     88495.9117     97437.3764       299.5872         309133.5325    309133.5325     99639.2115    308981.8159    308981.8159
+
+ENERGY:    8550         0.0000         0.0000         0.0000         0.0000              0.0000     88322.8590         0.0000         0.0000      8948.7191          97271.5782       300.2434     88322.8590     97274.7208       301.0960         308640.6400    308640.6400     99639.2115    308911.0681    308911.0681
+
+ENERGY:    8600         0.0000         0.0000         0.0000         0.0000              0.0000     88350.0353         0.0000         0.0000      8925.3572          97275.3925       299.4595     88350.0353     97278.4304       299.9569         308707.2702    308707.2702     99639.2115    308771.5236    308771.5236
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8600
+ENERGY:    8650         0.0000         0.0000         0.0000         0.0000              0.0000     88468.5029         0.0000         0.0000      8939.8589          97408.3618       299.9461     88468.5029     97411.4133       299.1165         309059.1800    309059.1800     99639.2115    308929.7121    308929.7121
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8700
+ENERGY:    8700         0.0000         0.0000         0.0000         0.0000              0.0000     88389.2618         0.0000         0.0000      8969.6339          97358.8957       300.9451     88389.2618     97362.0160       300.3509         308836.0505    308836.0505     99639.2115    308972.9049    308972.9049
+
+ENERGY:    8750         0.0000         0.0000         0.0000         0.0000              0.0000     88298.1221         0.0000         0.0000      8984.6539          97282.7760       301.4490     88298.1221     97285.9636       300.5178         308575.5862    308575.5862     99639.2115    308778.1806    308778.1806
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8800
+ENERGY:    8800         0.0000         0.0000         0.0000         0.0000              0.0000     88448.8835         0.0000         0.0000      8906.8521          97355.7356       298.8387     88448.8835     97358.6905       299.4577         308980.0687    308980.0687     99639.2115    308782.8526    308782.8526
+
+ENERGY:    8850         0.0000         0.0000         0.0000         0.0000              0.0000     88320.6045         0.0000         0.0000      8973.1302          97293.7347       301.0624     88320.6045     97296.8958       300.4578         308640.7679    308640.7679     99639.2115    308854.9638    308854.9638
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 8900
+ENERGY:    8900         0.0000         0.0000         0.0000         0.0000              0.0000     88288.3175         0.0000         0.0000      8941.6117          97229.9293       300.0049     88288.3175     97233.0434       300.4056         308535.1684    308535.1684     99639.2115    308691.2345    308691.2345
+
+ENERGY:    8950         0.0000         0.0000         0.0000         0.0000              0.0000     88381.8255         0.0000         0.0000      8946.9470          97328.7725       300.1839     88381.8255     97331.7650       299.3405         308806.5227    308806.5227     99639.2115    308708.2982    308708.2982
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9000
+TIMING: 9000  CPU: 41.8971, 0.00426485/step  Wall: 41.9007, 0.00426414/step, 0.00118448 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    9000         0.0000         0.0000         0.0000         0.0000              0.0000     88317.0083         0.0000         0.0000      8936.6822          97253.6905       299.8395     88317.0083     97256.7239       300.4950         308621.8357    308621.8357     99639.2115    308594.4031    308594.4031
+
+ENERGY:    9050         0.0000         0.0000         0.0000         0.0000              0.0000     88378.4158         0.0000         0.0000      8957.8062          97336.2220       300.5483     88378.4158     97339.2530       299.4597         308805.1621    308805.1621     99639.2115    308760.8434    308760.8434
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9100
+ENERGY:    9100         0.0000         0.0000         0.0000         0.0000              0.0000     88397.6561         0.0000         0.0000      8936.0008          97333.6570       299.8167     88397.6561     97336.7093       299.9995         308850.8590    308850.8590     99639.2115    308695.9601    308695.9601
+
+ENERGY:    9150         0.0000         0.0000         0.0000         0.0000              0.0000     88374.5665         0.0000         0.0000      8985.3208          97359.8874       301.4714     88374.5665     97363.0570       299.8556         308801.7042    308801.7042     99639.2115    308960.6447    308960.6447
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9200
+ENERGY:    9200         0.0000         0.0000         0.0000         0.0000              0.0000     88337.7312         0.0000         0.0000      8915.6097          97253.3409       299.1325     88337.7312     97256.4202       300.6668         308661.7011    308661.7011     99639.2115    308736.9760    308736.9760
+
+ENERGY:    9250         0.0000         0.0000         0.0000         0.0000              0.0000     88277.6281         0.0000         0.0000      8930.4847          97208.1127       299.6316     88277.6281     97211.1980       300.3115         308498.4823    308498.4823     99639.2115    308578.7597    308578.7597
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9300
+ENERGY:    9300         0.0000         0.0000         0.0000         0.0000              0.0000     88442.0130         0.0000         0.0000      8912.4973          97354.5103       299.0281     88442.0130     97357.4302       299.0042         308964.2067    308964.2067     99639.2115    308655.2902    308655.2902
+
+ENERGY:    9350         0.0000         0.0000         0.0000         0.0000              0.0000     88251.0778         0.0000         0.0000      8958.8273          97209.9051       300.5825     88251.0778     97213.0599       300.9971         308437.9745    308437.9745     99639.2115    308696.0795    308696.0795
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9400
+ENERGY:    9400         0.0000         0.0000         0.0000         0.0000              0.0000     88352.4211         0.0000         0.0000      8964.7484          97317.1695       300.7812     88352.4211     97320.3052       299.2821         308731.7017    308731.7017     99639.2115    308771.1418    308771.1418
+
+ENERGY:    9450         0.0000         0.0000         0.0000         0.0000              0.0000     88356.0550         0.0000         0.0000      8935.4133          97291.4683       299.7969     88356.0550     97294.5039       300.1519         308723.5747    308723.5747     99639.2115    308650.2533    308650.2533
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9500
+TIMING: 9500  CPU: 44.0325, 0.00427082/step  Wall: 44.0358, 0.00427013/step, 0.000593074 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:    9500         0.0000         0.0000         0.0000         0.0000              0.0000     88352.8408         0.0000         0.0000      8926.9415          97279.7823       299.5127     88352.8408     97282.7964       300.0730         308709.3663    308709.3663     99639.2115    308744.5082    308744.5082
+
+ENERGY:    9550         0.0000         0.0000         0.0000         0.0000              0.0000     88289.9237         0.0000         0.0000      8919.6131          97209.5368       299.2668     88289.9237     97212.5181       300.4650         308523.5450    308523.5450     99639.2115    308629.5775    308629.5775
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9600
+ENERGY:    9600         0.0000         0.0000         0.0000         0.0000              0.0000     88436.2073         0.0000         0.0000      8935.5030          97371.7103       299.8000     88436.2073     97374.7478       298.9204         308954.8935    308954.8935     99639.2115    308743.5391    308743.5391
+
+ENERGY:    9650         0.0000         0.0000         0.0000         0.0000              0.0000     88329.7824         0.0000         0.0000      8938.2237          97268.0061       299.8912     88329.7824     97271.0539       300.6913         308657.2314    308657.2314     99639.2115    308654.5686    308654.5686
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9700
+ENERGY:    9700         0.0000         0.0000         0.0000         0.0000              0.0000     88303.5304         0.0000         0.0000      8907.0178          97210.5482       298.8442     88303.5304     97213.5444       300.3633         308563.5921    308563.5921     99639.2115    308554.4294    308554.4294
+
+ENERGY:    9750         0.0000         0.0000         0.0000         0.0000              0.0000     88340.8725         0.0000         0.0000      8972.4805          97313.3530       301.0406     88340.8725     97316.4468       299.3525         308700.1104    308700.1104     99639.2115    308719.9100    308719.9100
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9800
+ENERGY:    9800         0.0000         0.0000         0.0000         0.0000              0.0000     88299.2037         0.0000         0.0000      8967.7148          97266.9185       300.8807     88299.2037     97270.0140       300.3069         308574.0818    308574.0818     99639.2115    308738.1675    308738.1675
+
+ENERGY:    9850         0.0000         0.0000         0.0000         0.0000              0.0000     88316.9300         0.0000         0.0000      9005.2492          97322.1791       302.1400     88316.9300     97325.3456       299.6470         308651.4886    308651.4886     99639.2115    308792.1313    308792.1313
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 9900
+ENERGY:    9900         0.0000         0.0000         0.0000         0.0000              0.0000     88326.7816         0.0000         0.0000      8908.8101          97235.5917       298.9044     88326.7816     97238.6039       300.5147         308622.8988    308622.8988     99639.2115    308531.2329    308531.2329
+
+ENERGY:    9950         0.0000         0.0000         0.0000         0.0000              0.0000     88334.3785         0.0000         0.0000      8931.8549          97266.2334       299.6776     88334.3785     97269.2850       299.8094         308656.8254    308656.8254     99639.2115    308620.8191    308620.8191
+
+TIMING: 10000  CPU: 46.1639, 0.00426279/step  Wall: 46.1678, 0.00426402/step, 0 hours remaining, 5803.304688 MB of memory in use.
+ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
+
+ENERGY:   10000         0.0000         0.0000         0.0000         0.0000              0.0000     88429.6168         0.0000         0.0000      8905.6047          97335.2214       298.7968     88429.6168     97338.2016       299.5192         308921.8886    308921.8886     99639.2115    308762.2764    308762.2764
+
+WRITING COORDINATES TO DCD FILE ./ne10k.dcd AT STEP 10000
+WRITING EXTENDED SYSTEM TO OUTPUT FILE AT STEP 10000
+WRITING COORDINATES TO OUTPUT FILE AT STEP 10000
+CLOSING COORDINATE DCD FILE ./ne10k.dcd
+WRITING VELOCITIES TO OUTPUT FILE AT STEP 10000
+The last velocity output (seq=-2) takes 0.019 seconds, 5803.305 MB of memory in use
+====================================================
+
+WallClock: 46.289204  CPUTime: 46.269737  Memory: 5803.304688 MB
+[Partition 0][Node 0] End of program

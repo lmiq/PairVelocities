@@ -5,6 +5,17 @@ using DelimitedFiles
 using LaTeXStrings
 using BenchmarkTools
 
+ENV["GKSwstype"]="nul"
+
+vers(s,c) = parse.(Int,[ split.(split(s,"."),c,keepempty=false)[i][1] for i in 1:3 ])
+
+function prev(c,l::Int=0)
+  file = sort!(
+    filter(x -> occursin(c,x) && occursin(".dat",x),readdir("./data")),
+    by= s->vers(s,"$(c)_v"))[end-l]
+  return file[5:end-4] 
+end
+
 function plot_florpi(version,output=false)
 
   #
@@ -82,22 +93,20 @@ function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000)
   # Reading data
   #
   
-  previous_cd = sort!(filter(x -> occursin("cd",x) && occursin(".dat",x),readdir("./data")))[end]
-  previous_version = previous_cd[5:9] 
+  previous_version = prev("cd")
   if previous_version == "$version"
-    previous_cd = sort!(filter(x -> occursin("cd",x) && occursin(".dat",x),readdir("./data")))[end-1]
+    previous_version = prev("cd",1)
   end
-  previous_cd = "./data/"*previous_cd
+  previous_cd = "./data/cd_v"*previous_version*".dat"
   
   data_cd = readdlm(previous_cd,comments=true,comment_char='#')
   println(" Previous: $previous_cd ")
   
-  previous_cv = sort!(filter(x -> occursin("cv",x) && occursin(".dat",x),readdir("./data")))[end]
-  previous_version = previous_cv[5:9] 
+  previous_previous_version = prev("cv")
   if previous_version == "$version"
-    previous_cv = sort!(filter(x -> occursin("cv",x) && occursin(".dat",x),readdir("./data")))[end-1]
+    previous_version = prev("cv",1)
   end
-  previous_cv = "./data/"*previous_cv
+  previous_cv = "./data/cv_v"*previous_version*".dat"
   data_cv = readdlm(previous_cv,comments=true,comment_char='#')
   println(" Previous: $previous_cv ")
   

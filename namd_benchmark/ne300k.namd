@@ -6,6 +6,7 @@
 
 set system "ne300k"
 set side 144.05129897602086
+set cutoff 12.0
 
 structure          ./$system.psf
 coordinates        ./$system\_initial.pdb
@@ -24,7 +25,7 @@ parameters ./par_bms_dec03.inp
  
 # Force-Field Parameters
 exclude scaled1-4
-cutoff              12.
+cutoff              $cutoff
 switching           off
 temperature         300.
 

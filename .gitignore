@@ -4,3 +4,5 @@ test*
 *.coor
 *.BAK
 *.old
+ne*.xyz
+*.dcd

@@ -6,6 +6,7 @@
 
 set system "ne10k"
 set side 46.35999999999999
+set cutoff 12.0
 
 #99.8795922298781
 #144.05129897602086
@@ -27,7 +28,7 @@ parameters ./par_bms_dec03.inp
  
 # Force-Field Parameters
 exclude scaled1-4
-cutoff              12.
+cutoff              $cutoff
 switching           off
 temperature         300.
 
