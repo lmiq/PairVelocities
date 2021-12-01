@@ -53,7 +53,7 @@ function compute_mean(
   lbox = [2000,2000,2000]
   cutoff = 200
   box = Box(lbox,cutoff,lcell=lcell)
-  cl = CellList(positions,box)
+  cl = CellList(positions,box,nbatches=(0,2^10))
 
   rbins = 0.:20.:200.
   hist = (zeros(Int,length(rbins)-1), zeros(Float64,length(rbins)-1))      

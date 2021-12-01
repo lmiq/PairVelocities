@@ -1,8 +1,10 @@
 import Pkg
 using CellListMap
+import CellListMap.Examples: florpi
 using DelimitedFiles
 using LaTeXStrings
 using BenchmarkTools
+using Base.Threads
 
 ENV["GKSwstype"]="nul"
 
@@ -15,10 +17,22 @@ function prev(c,l::Int=0)
   return file[5:end-4] 
 end
 
-function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000)
+function get_elapsed(n,cd,parallel)
+    ntrials = 1
+    t = +Inf
+    for _ in 1:ntrials
+        GC.gc()
+        t = min(t,@belapsed florpi(N=$n,cd=$cd,parallel=$parallel,nbatches=(0,0)))
+    end
+    return t
+end
 
-  if Threads.nthreads() != 8 
-    error(" Run with julia -t auto ")
+function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000;nthreads=nothing)
+
+  if nthreads == nothing 
+      if Threads.nthreads() != 8 
+         error(" Run with julia -t 8")
+      end
   end
   
   ns = [  10000   
@@ -82,21 +96,21 @@ function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000)
   # Parallel 
   #
   println("Parallel, constant volume:")
-  CellListMap.florpi(N=1000,cd=false,parallel=true);
+  florpi(N=1000,cd=false,parallel=true);
   for i in 1:ilast_cv
     n = ns[i]
     prev = try data_cv[i,5] catch; 0 end
-    t = @belapsed CellListMap.florpi(N=$n,cd=false,parallel=true);
+    t = get_elapsed(n,false,true)
     new_cv[i,5] = t
     println(n," ",t," prev ", prev)
   end
   
   println("Parallel, constant density:")
-  CellListMap.florpi(N=1000,cd=true,parallel=true);
+  florpi(N=1000,cd=true,parallel=true);
   for i in 1:ilast_cd
     n = ns[i]
     prev = try data_cd[i,5] catch; 0 end
-    t = @belapsed CellListMap.florpi(N=$n,cd=true,parallel=true);
+    t = get_elapsed(n,true,true)
     new_cd[i,5] = t
     println(n," ",t," prev ", prev)
   end
@@ -105,21 +119,21 @@ function run_benchmark(output=false,last_cd=10_000_000,last_cv=3_000_000)
   # Serial
   #
   println("Serial, constant density:")
-  CellListMap.florpi(N=1000,cd=true,parallel=false);
+  florpi(N=1000,cd=true,parallel=false);
   for i in 1:ilast_cd
     n = ns[i]
     prev = try data_cd[i,4] catch; 0 end
-    t = @belapsed CellListMap.florpi(N=$n,cd=true,parallel=false);
+    t = get_elapsed(n,true,false)
     new_cd[i,4] = t
     println(n," ",t," prev ", prev)
   end
   
   println("Serial, constant volume:")
-  CellListMap.florpi(N=1000,cd=false,parallel=false);
+  florpi(N=1000,cd=false,parallel=false);
   for i in 1:ilast_cv
     n = ns[i]
     prev = try data_cv[i,4] catch; 0 end
-    t = @belapsed CellListMap.florpi(N=$n,cd=false,parallel=false);
+    t = get_elapsed(n,false,false)
     new_cv[i,4] = t
     println(n," ",t," prev ", prev)
   end
