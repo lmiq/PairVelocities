@@ -1,0 +1,50 @@
+julia> nl_run()
+----------------------------------
+N1 = 1 ; N2 = 1000000 ; PASS TEST = true
+nl (x,y):   105.773 ms (1000548 allocations: 68.71 MiB)
+nl (y,x):   1.018 s (18 allocations: 44.26 MiB)
+cl serial (x,y):   237.796 ms (17265 allocations: 148.12 MiB)
+cl parallel (x,y):   140.862 ms (155576 allocations: 280.82 MiB)
+cl serial (y,x):   130.213 ms (29 allocations: 22.99 MiB)
+cl parallel (y,x):   121.522 ms (70 allocations: 23.01 MiB)
+----------------------------------
+N1 = 10 ; N2 = 1000000 ; PASS TEST = true
+nl (x,y):   115.675 ms (1005001 allocations: 69.05 MiB)
+nl (y,x):   1.102 s (81 allocations: 44.37 MiB)
+cl serial (x,y):   240.248 ms (17267 allocations: 148.45 MiB)
+cl parallel (x,y):   141.164 ms (155642 allocations: 282.02 MiB)
+cl serial (y,x):   121.667 ms (56 allocations: 23.34 MiB)
+cl parallel (y,x):   76.830 ms (344 allocations: 24.68 MiB)
+----------------------------------
+N1 = 100 ; N2 = 1000000 ; PASS TEST = true
+nl (x,y):   245.110 ms (1047753 allocations: 72.31 MiB)
+nl (y,x):   1.055 s (711 allocations: 45.48 MiB)
+cl serial (x,y):   255.336 ms (17262 allocations: 150.45 MiB)
+cl parallel (x,y):   146.351 ms (155547 allocations: 285.14 MiB)
+cl serial (y,x):   133.450 ms (280 allocations: 25.42 MiB)
+cl parallel (y,x):   43.892 ms (801 allocations: 28.39 MiB)
+----------------------------------
+N1 = 1000 ; N2 = 1000000 ; PASS TEST = true
+nl (x,y):   818.331 ms (1391232 allocations: 98.56 MiB)
+nl (y,x):   1.069 s (7009 allocations: 56.57 MiB)
+cl serial (x,y):   261.536 ms (17269 allocations: 162.35 MiB)
+cl parallel (x,y):   155.111 ms (155817 allocations: 317.62 MiB)
+cl serial (y,x):   240.196 ms (2177 allocations: 37.87 MiB)
+cl parallel (y,x):   61.286 ms (3876 allocations: 55.58 MiB)
+----------------------------------
+N1 = 10000 ; N2 = 1000000 ; PASS TEST = true
+nl (x,y):   1.966 s (2061191 allocations: 167.18 MiB)
+nl (y,x):   1.460 s (70007 allocations: 167.58 MiB)
+cl serial (x,y):   697.724 ms (17273 allocations: 368.03 MiB)
+cl parallel (x,y):   421.984 ms (155859 allocations: 624.06 MiB)
+cl serial (y,x):   1.372 s (12409 allocations: 246.36 MiB)
+cl parallel (y,x):   254.716 ms (31004 allocations: 369.60 MiB)
+----------------------------------
+N1 = 100000 ; N2 = 1000000 ; PASS TEST = true
+nl (x,y):   8.418 s (4522578 allocations: 1.97 GiB)
+nl (y,x):   4.540 s (699928 allocations: 1.25 GiB)
+cl serial (x,y):   4.761 s (17289 allocations: 1.58 GiB)
+cl parallel (x,y):   1.494 s (155847 allocations: 3.10 GiB)
+cl serial (y,x):   5.968 s (15903 allocations: 1.47 GiB)
+cl parallel (y,x):   1.484 s (113191 allocations: 2.89 GiB)
+

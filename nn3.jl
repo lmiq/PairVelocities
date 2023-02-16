@@ -9,9 +9,7 @@ function nl_NN(x,y,r)
 end
 
 function nl_CL(x,y,r;parallel=true,autoswap=false)
-    box = Box(limits(x,y),r)
-    cl = CellList(x,y,box,parallel=parallel,autoswap=autoswap)
-    return CellListMap.neighbourlist(box,cl,parallel=parallel)
+    return CellListMap.neighborlist(x,y,r;parallel=parallel,autoswap=autoswap)
 end
 
 function compare_result(list_CL,list_NN)
