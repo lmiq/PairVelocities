@@ -1,3 +1,5 @@
+import Pkg
+Pkg.activate(".")
 using BenchmarkTools, Test
 using NearestNeighbors
 using CellListMap, StaticArrays
