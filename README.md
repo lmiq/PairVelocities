@@ -12,6 +12,8 @@ Current benchmarks:
 
 ![image](./data/cv_v0.8.27-DEV.png)
 
+Obs: The comoputer used in this benchmark is different from previous ones.
+
 ### Version 0.5.11
 
 ![image](./data/cd_v0.5.11.png)
