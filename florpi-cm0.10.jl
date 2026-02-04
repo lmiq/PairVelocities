@@ -1,5 +1,6 @@
 import Pkg
 Pkg.activate(".")
+Pkg.pkg"dev CellListMap"
 using CellListMap
 using Plots, Plots.Measures
 using DelimitedFiles
@@ -9,30 +10,39 @@ using StaticArrays
 using Random
 using Chairmarks
 using ThreadPinning
+import CellListMap: copy_output, reset_output!, reducer!
+
 pinthreads(:cores)
 
 #
 # florpi
 #
+
+copy_output(x::Tuple{Vector{Int},Vector{Float64}}) = (copy(x[1]), copy(x[2]))
+function reset_output!(x::Tuple{Vector{Int},Vector{Float64}}) 
+    x[1] .= 0
+    x[2] .= 0.0
+    return (x[1],x[2])
+end
+function reducer!(
+    x::Tuple{Vector{Int},Vector{Float64}},
+    y::Tuple{Vector{Int},Vector{Float64}},
+)
+    x[1] .+= y[1]
+    x[2] .+= y[2]
+    return (x[1], x[2])
+end
+
 function florpi(;N=100_000,cd=true,parallel=true,nbatches=(0,0))
 
   @inline dot(x::SVector{3,Float64},y::SVector{3,Float64}) = x[1]*y[1] + x[2]*y[2] + x[3]*y[3]
   
-  function compute_pairwise_mean_cell_lists!(x,y,i,j,d2,hist,velocities,rbins,sides)
-    d = x - y
-    r = sqrt(d2)
-    ibin = searchsortedfirst(rbins, r) - 1
+  function compute_pairwise_mean_cell_lists!(pair,hist,velocities,rbins)
+    (; x, y, i, j, d) = pair
+    dx = x - y
+    ibin = searchsortedfirst(rbins, d) - 1
     hist[1][ibin] += 1
-    hist[2][ibin] += dot(velocities[i]-velocities[j],d)/r
-    return hist
-  end
-
-  function reduce_hist(hist,hist_threaded)
-    hist = hist_threaded[1]
-    for i in 2:Threads.nthreads()
-      hist[1] .+= hist_threaded[i][1]
-      hist[2] .+= hist_threaded[i][2]
-    end
+    hist[2][ibin] += dot(velocities[i]-velocities[j],dx)/d
     return hist
   end
 
@@ -55,26 +65,28 @@ function florpi(;N=100_000,cd=true,parallel=true,nbatches=(0,0))
   n = size(positions)[2]
   positions = reshape(reinterpret(SVector{3,Float64},positions),n)
   velocities = reshape(reinterpret(SVector{3,Float64},velocities),n)
-
-  box = Box(Lbox, r_max)
-  cl = CellList(positions,box,nbatches=nbatches)
-  hist = (zeros(Int,length(rbins)-1), zeros(Float64,length(rbins)-1))
-
+  
   # Needs this to stabilize the type of velocities and hist, probably
-  function barrier(f,velocities,rbins,Lbox,hist,positions,box,cl,reduce_hist,parallel)
-    hist = map_pairwise!(
-      (x,y,i,j,d2,hist) -> compute_pairwise_mean_cell_lists!(
-         x,y,i,j,d2,hist,velocities,rbins,Lbox
-      ),
-      hist, box, cl,
-      reduce=reduce_hist,
-      parallel=parallel
+  function barrier(f::F,sys,velocities,rbins) where {F}
+    hist = pairwise!(
+      (pair, hist) -> f(pair,hist,velocities,rbins),
+      sys;
+      update_lists=false,
     )
     return hist
   end
 
-  hist = barrier(compute_pairwise_mean_cell_lists!,
-    velocities,rbins,Lbox,hist,positions,box,cl,reduce_hist,parallel)
+  hist = (zeros(Int,length(rbins)-1), zeros(Float64,length(rbins)-1))
+  sys = ParticleSystem(
+    positions=positions,
+    unitcell=Lbox,
+    cutoff=r_max,
+    output=hist,
+    parallel=parallel,
+    nbatches=nbatches,
+  )
+
+  hist = barrier(compute_pairwise_mean_cell_lists!, sys,velocities, rbins)
 
   n_pairs = hist[1]
   mean_v_r = hist[2]
@@ -253,5 +265,5 @@ function run_benchmark(;
 
 end
 
-
+@main(args) = run_benchmark()
 
