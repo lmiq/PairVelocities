@@ -50,7 +50,8 @@ function nl_run()
 
   r = 0.05
 
-  for N1 in [1, 10, 100, 1_000, 10_000, 100_000]
+  #for N1 in [1, 10, 100, 1_000, 10_000, 100_000]
+  for N1 in [1_000, 10_000, 100_000]
     for N2 in [10^6]
 
        x = [ rand(SVector{3,Float64}) for i in 1:N1 ]
@@ -76,8 +77,4 @@ function nl_run()
 end
 
 
-
-
-
-
-
+@main(args) = nl_run()

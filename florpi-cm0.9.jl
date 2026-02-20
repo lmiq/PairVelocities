@@ -1,6 +1,7 @@
 import Pkg
 Pkg.activate(".")
-Pkg.pkg"add CellListMap@0.9.0"
+Pkg.pkg"add CellListMap@0.9"
+Pkg.update()
 using CellListMap
 using Plots, Plots.Measures
 using DelimitedFiles

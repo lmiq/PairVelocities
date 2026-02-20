@@ -1,6 +1,7 @@
 import Pkg
 Pkg.activate(".")
 Pkg.pkg"dev CellListMap"
+Pkg.update()
 using CellListMap
 using Plots, Plots.Measures
 using DelimitedFiles
@@ -68,11 +69,7 @@ function florpi(;N=100_000,cd=true,parallel=true,nbatches=(0,0))
   
   # Needs this to stabilize the type of velocities and hist, probably
   function barrier(f::F,sys,velocities,rbins) where {F}
-    hist = pairwise!(
-      (pair, hist) -> f(pair,hist,velocities,rbins),
-      sys;
-      update_lists=false,
-    )
+    hist = pairwise!((pair, hist) -> f(pair,hist,velocities,rbins), sys)
     return hist
   end
 
