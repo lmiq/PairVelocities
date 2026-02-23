@@ -165,7 +165,7 @@ end
 
 function (@main)(ARGS)
     params = Params()
-    simulate(params)
+    @time simulate(params)
 end
 
 
