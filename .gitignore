@@ -4,3 +4,4 @@ test*
 *.coor
 *.BAK
 *.old
+namd_benchmark/ne10k_traj.xyz
