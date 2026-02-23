@@ -9,7 +9,7 @@ using Statistics: mean
 #
 # Simulation setup
 #
-@kwdef struct Params{V,N,T}
+@kwdef struct Params{V,N,T,PS}
     x0::V = getcoor("./ne10k_initial.pdb")  
     temperature::T = 300.0
     nsteps::Int = 10_000
@@ -25,6 +25,13 @@ using Statistics: mean
     ε::T = 0.0441795 # kcal/mol
     σ::T = 2*1.64009 # Å
     kB::T = 0.001985875 # Boltzmann constant kcal / mol K
+    sys::PS = ParticleSystem(
+        positions=x0,
+        unitcell=unitcell,
+        cutoff=cutoff,
+        output=EnergyAndForces(zero(typeof(cutoff)), fill(zero(typeof(unitcell)), length(x0))),
+        output_name=:energy_and_forces
+    )
 end
 
 # Kinetic energy and temperature 
@@ -41,7 +48,7 @@ end
 
 # Function to print output data
 function print_data(istep,x,params,sys,kinetic,trajfile)
-    (; print_energy, print_traj, kB, ε, σ) = params
+    (; print_energy, print_traj, kB) = params
     if istep%print_energy == 0
         u = sys.energy_and_forces.u
         temp = compute_temp(kinetic,kB,length(x))
@@ -53,7 +60,7 @@ function print_data(istep,x,params,sys,kinetic,trajfile)
     if istep%print_traj == 0 && istep > 0
         println(trajfile,length(x))
         println(trajfile," step = ", istep)
-        for i in 1:length(x)
+        for i in eachindex(x)
            @printf(trajfile,"Ne %12.5f %12.5f %12.5f\n", ntuple(j -> x[i][j], 3)...)
         end
     end
@@ -99,7 +106,7 @@ end
 # Simulation
 #
 function simulate(params::Params)
-    (; x0, temperature, nsteps, cutoff, unitcell, dt, ε, σ, mass, kB) = params
+    (; x0, temperature, nsteps, dt, ε, σ, mass, kB, sys) = params
     trajfile = open(params.trajfile,"w")
 
     # To use coordinates in Angstroms, dt must be in 10ps. Usually packages
@@ -109,7 +116,6 @@ function simulate(params::Params)
 
     # Initial arrays
     x = copy(x0)
-    f = similar(x)
     flast = similar(x)
 
     # Initial velocities
@@ -119,17 +125,11 @@ function simulate(params::Params)
     t0 = compute_temp(v,mass,kB) 
     @. v = v * sqrt(temperature/t0)
 
-    # Initialize ParticleSystem
-    sys = ParticleSystem(
-        positions=x,
-        unitcell=unitcell,
-        cutoff=cutoff,
-        output=EnergyAndForces(zero(cutoff), f), 
-        output_name=:energy_and_forces,
-    )   
+    # Closure to capture energy parameters
+    uf_pair(pair, uf) = compute_energy_and_forces(pair,ε,σ,uf)
 
     # Compute energy ans forces at initial point
-    pairwise!((pair,uf) -> compute_energy_and_forces(pair,ε,σ,uf), sys)
+    pairwise!(uf_pair, sys)
 
     # Print data at initial point
     kinetic = compute_kinetic(v,mass)
@@ -146,7 +146,7 @@ function simulate(params::Params)
         flast .= f
 
         # Update forces
-        pairwise!((pair,uf) -> compute_energy_and_forces(pair,ε,σ,uf), sys)
+        pairwise!(uf_pair, sys)
          
         # Update velocities
         @. v = v + 0.5*((flast + f)/mass)*dt 
