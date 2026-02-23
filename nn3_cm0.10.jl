@@ -1,7 +1,8 @@
 import Pkg
 Pkg.activate(".")
+Pkg.instantiate()
 Pkg.develop("CellListMap")
-using BenchmarkTools, Test
+using Chairmarks, Test
 using NearestNeighbors
 using CellListMap, StaticArrays
 using LinearAlgebra
@@ -12,7 +13,7 @@ function nl_NN(x,y,r)
 end
 
 function nl_CL(x,y,r;parallel=true,autoswap=false)
-    return CellListMap.neighborlist(x,y,r;parallel=parallel)
+    return CellListMap.neighborlist(xpositions=x,ypositions=y,cutoff=r,parallel=parallel)
 end
 
 function compare_result(list_CL,list_NN)
@@ -63,12 +64,12 @@ function nl_run()
        println("----------------------------------")
        print("N1 = $N1 ; N2 = $N2 ; PASS TEST = ")
        println(compare_result(list_CL,list_NN))
-       print("nl (x,y): "); @btime nl_NN($x,$y,$r) samples=1 
-       print("nl (y,x): "); @btime nl_NN($y,$x,$r) samples=1 
-       print("cl serial (x,y): "); @btime nl_CL($x,$y,$r,parallel=false, autoswap=false) samples=1
-       print("cl parallel (x,y): "); @btime nl_CL($x,$y,$r,parallel=true, autoswap=false) samples=1
-       print("cl serial (y,x): "); @btime nl_CL($y,$x,$r,parallel=false, autoswap=false) samples=1
-       print("cl parallel (y,x): "); @btime nl_CL($y,$x,$r,parallel=true, autoswap=false) samples=1
+       print("nl (x,y): "); display(@b nl_NN($x,$y,$r))
+       print("nl (y,x): "); display(@b nl_NN($y,$x,$r))
+       print("cl serial (x,y): "); display(@b nl_CL($x,$y,$r,parallel=false))
+       print("cl parallel (x,y): "); display(@b nl_CL($x,$y,$r,parallel=true))
+       print("cl serial (y,x): "); display(@b nl_CL($y,$x,$r,parallel=false))
+       print("cl parallel (y,x): "); display(@b nl_CL($y,$x,$r,parallel=true))
 
     end
   end
