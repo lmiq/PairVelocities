@@ -4,24 +4,22 @@ using FastPow
 using StaticArrays
 using Printf
 using Base.Threads
-using Parameters
 using Statistics: mean
-using LinearAlgebra: norm_sqr
 
 #
 # Simulation setup
 #
-@with_kw struct Params{V,N,T,M,UnitCellType}
+@kwdef struct Params{V,N,T}
     x0::V = getcoor("./ne10k_initial.pdb")  
-    temperature::T = 300.
+    temperature::T = 300.0
     nsteps::Int = 10_000
     dt::T = 1.0 # fs
     ibath::Int = 10
     print_energy::Int = 50 
     print_traj::Int = 100
     trajfile::String = "ne10k_traj.xyz"
-    cutoff::T = 12.
-    box::Box{UnitCellType,N,T,M} = Box([ 46.37, 46.37, 46.37 ], cutoff)
+    cutoff::T = 12.0
+    unitcell::SVector{N,T} = SVector(46.37, 46.37, 46.37)
     # Parameters for Neon
     mass::T = 20.17900 # g/mol 
     ε::T = 0.0441795 # kcal/mol
@@ -29,21 +27,9 @@ using LinearAlgebra: norm_sqr
     kB::T = 0.001985875 # Boltzmann constant kcal / mol K
 end
 
-function potential_energy(d2,ε,σ,u)
-    @fastpow u += ε*( σ^12/d2^6 - 2*σ^6/d2^3 )
-    return u
-end
-
-function forces(x,y,i,j,d2,ε,σ,f)
-    r = y - x
-    @fastpow dudr = -12*ε*(σ^12/d2^7 - σ^6/d2^4)*r
-    f[i] = f[i] + dudr
-    f[j] = f[j] - dudr
-    return f
-end
-
 # Kinetic energy and temperature 
-compute_kinetic(v::AbstractVector,m) = (m/2)*sum(x -> norm_sqr(x), v)
+norm_sqr(v::SVector) = sum(abs2, v)
+compute_kinetic(v::AbstractVector,m) = (m/2)*sum(norm_sqr, v)
 compute_temp(kinetic,kB,n) = 2*kinetic/(3*kB*n)
 compute_temp(v::AbstractVector,m,kB) = 2*compute_kinetic(v,m)/(3*kB*length(v))
 
@@ -54,13 +40,10 @@ function remove_drift!(v)
 end
 
 # Function to print output data
-function print_data(istep,x,params,cl,kinetic,trajfile)
-    @unpack print_energy, print_traj, kB, box, ε, σ = params
+function print_data(istep,x,params,sys,kinetic,trajfile)
+    (; print_energy, print_traj, kB, ε, σ) = params
     if istep%print_energy == 0
-        u = map_pairwise!( 
-            (x,y,i,j,d2,output) -> potential_energy(d2,ε,σ,output),
-            0., box, cl, parallel=true,
-        ) 
+        u = sys.energy_and_forces.u
         temp = compute_temp(kinetic,kB,length(x))
         @printf(
             "STEP = %8i U = %12.5f K = %12.5f TOT = %12.5f TEMP = %12.5f\n", 
@@ -85,11 +68,38 @@ function getcoor(file)
     return copy(reinterpret(reshape,SVector{3,Float64},Chemfiles.positions(frame)))
 end
 
+mutable struct EnergyAndForces{N,T}
+    u::T
+    f::Vector{SVector{N,T}}
+end
+CellListMap.copy_output(uf::EnergyAndForces) = EnergyAndForces(uf.u, copy(uf.f))
+function CellListMap.reset_output!(uf::EnergyAndForces) 
+    uf.u = 0
+    fill!(uf.f, zeros(eltype(uf.f)))
+    return uf
+end
+function CellListMap.reducer!(uf1::EnergyAndForces, uf2::EnergyAndForces)
+    uf1.u += uf2.u
+    uf1.f .+= uf2.f
+    return uf1
+end
+
+function compute_energy_and_forces(pair,ε,σ,uf::EnergyAndForces)
+    (; x, y, i, j, d2) = pair
+    r = y - x
+    @fastpow u = ε*( σ^12/d2^6 - 2*σ^6/d2^3 )
+    @fastpow dudr = -12*ε*(σ^12/d2^7 - σ^6/d2^4)*r
+    uf.u += u
+    uf.f[i] = uf.f[i] + dudr
+    uf.f[j] = uf.f[j] - dudr
+    return uf
+end
+
 #
 # Simulation
 #
-function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
-    @unpack x0, temperature, nsteps, box, dt, ε, σ, mass, kB = params
+function simulate(params::Params)
+    (; x0, temperature, nsteps, cutoff, unitcell, dt, ε, σ, mass, kB) = params
     trajfile = open(params.trajfile,"w")
 
     # To use coordinates in Angstroms, dt must be in 10ps. Usually packages
@@ -109,44 +119,41 @@ function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
     t0 = compute_temp(v,mass,kB) 
     @. v = v * sqrt(temperature/t0)
 
-    # Build cell lists for the first time
-    cl = CellList(x,box)
+    # Initialize ParticleSystem
+    sys = ParticleSystem(
+        positions=x,
+        unitcell=unitcell,
+        cutoff=cutoff,
+        output=EnergyAndForces(zero(cutoff), f), 
+        output_name=:energy_and_forces,
+    )   
 
-    # preallocate threaded output, since it contains the forces vector
-    f .= Ref(zeros(eltype(f)))
-    f_threaded = [ deepcopy(f) for _ in 1:nthreads() ]
-    aux = CellListMap.AuxThreaded(cl)
+    # Compute energy ans forces at initial point
+    pairwise!((pair,uf) -> compute_energy_and_forces(pair,ε,σ,uf), sys)
 
     # Print data at initial point
     kinetic = compute_kinetic(v,mass)
-    print_data(0,x,params,cl,kinetic,trajfile)
+    print_data(0,x,params,sys,kinetic,trajfile)
 
     # Simulate
     for istep in 1:nsteps
+        f = sys.energy_and_forces.f
 
         # Update positions (velocity-verlet)
         @. x = x + v*dt + 0.5*(f/mass)*dt^2
 
-        # Reset forces
+        # Save forces in previous step
         flast .= f
-        f .= Ref(zeros(eltype(f)))
-        @threads for it in 1:nthreads()
-            f_threaded[it] .= Ref(zeros(eltype(f)))
-        end
 
         # Update forces
-        map_pairwise!( 
-            (x,y,i,j,d2,output) -> forces(x,y,i,j,d2,ε,σ,output),
-            f, box, cl, parallel=true,
-            output_threaded=f_threaded
-        ) 
+        pairwise!((pair,uf) -> compute_energy_and_forces(pair,ε,σ,uf), sys)
          
         # Update velocities
         @. v = v + 0.5*((flast + f)/mass)*dt 
 
         # Print data and output file
         kinetic = compute_kinetic(v,mass)
-        print_data(istep,x,params,cl,kinetic,trajfile)
+        print_data(istep,x,params,sys,kinetic,trajfile)
 
         # Isokinetic bath
         if istep%params.ibath == 0
@@ -155,18 +162,15 @@ function simulate(params::Params{V,N,T,UnitCellType}) where {V,N,T,UnitCellType}
             @. v = v * sqrt(temperature/temp)
         end
 
-        # Update cell lists
-        cl = UpdateCellList!(x,box,cl,aux)
+        # Update article system
+        update!(sys; positions=x)
 
    end
-    close(trajfile)
+   close(trajfile)
 
 end
 
-#params = Params()
-#simulate(params)
-
-
-
-
-
+function (@main)(ARGS)
+    params = Params()
+    simulate(params)
+end
