@@ -1,5 +1,6 @@
 import Pkg
 Pkg.activate(".")
+Pkg.pkg"add CellListMap@0.8.30"
 using BenchmarkTools, Test
 using NearestNeighbors
 using CellListMap, StaticArrays

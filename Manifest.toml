@@ -1007,10 +1007,24 @@ uuid = "1c621080-faea-4a02-84b6-bbd5e436b8fe"
 version = "1.0.0"
 
 [[deps.ThreadPinning]]
-deps = ["DelimitedFiles", "DocStringExtensions", "Libdl", "LinearAlgebra", "PrecompileTools", "Preferences", "Random", "StableTasks"]
-git-tree-sha1 = "333748c6fa62868fa039f00ba670d619776a6752"
+deps = ["DelimitedFiles", "Libdl", "LinearAlgebra", "PrecompileTools", "Preferences", "Random", "StableTasks", "SysInfo", "ThreadPinningCore"]
+git-tree-sha1 = "d47dbc7862f69ce1973fff227237275ff4a10781"
 uuid = "811555cd-349b-4f26-b7bc-1f208b848042"
-version = "0.7.22"
+version = "1.0.2"
+
+    [deps.ThreadPinning.extensions]
+    DistributedExt = "Distributed"
+    MPIExt = "MPI"
+
+    [deps.ThreadPinning.weakdeps]
+    Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+    MPI = "da04e1cc-30fd-572f-bb4f-1f8673147195"
+
+[[deps.ThreadPinningCore]]
+deps = ["LinearAlgebra", "PrecompileTools", "StableTasks"]
+git-tree-sha1 = "bb3c6f3b5600fbff028c43348365681b34d06499"
+uuid = "6f48bc29-05ce-4cc8-baad-4adcba581a18"
+version = "0.4.5"
 
 [[deps.TranscodingStreams]]
 git-tree-sha1 = "0c45878dcfdcfa8480052b6ab162cdd138781742"
