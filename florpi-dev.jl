@@ -1,8 +1,7 @@
 import Pkg
 Pkg.activate(".")
 Pkg.pkg"rm CellListMap"
-Pkg.pkg"add CellListMap@0.10.3"
-Pkg.pkg"pin CellListMap"
+Pkg.pkg"dev CellListMap"
 Pkg.update()
 using CellListMap
 using Plots, Plots.Measures
@@ -13,7 +12,6 @@ using StaticArrays
 using Random
 using Chairmarks
 using ThreadPinning
-using Printf
 import CellListMap: copy_output, reset_output!, reducer!
 
 include("./print_line.jl")
