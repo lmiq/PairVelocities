@@ -132,6 +132,26 @@ function plot_florpi(version, output=false)
 
 end
 
+function extract_data_version(filename::AbstractString, prefix::AbstractString)
+    m = match(Regex("^" * prefix * raw"_v([0-9]+\.[0-9]+\.[0-9]+)\.dat$"), filename)
+    return m === nothing ? nothing : VersionNumber(m.captures[1])
+end
+
+function pick_previous_data_file(prefix::AbstractString, current_version::VersionNumber; dir="./data")
+    files = filter(x -> startswith(x, prefix * "_v") && endswith(x, ".dat"), readdir(dir))
+    entries = Tuple{VersionNumber,String}[]
+    for file in files
+        v = extract_data_version(file, prefix)
+        v === nothing && continue
+        v == current_version && continue
+        push!(entries, (v, file))
+    end
+    isempty(entries) && error("Could not find previous $(prefix) data file in $(dir).")
+    sort!(entries, by=first)
+    selected = entries[end]
+    return joinpath(dir, selected[2]), selected[1]
+end
+
 function run_benchmark(;
     output=false,
     last_cd=10_000_000,
@@ -178,22 +198,12 @@ function run_benchmark(;
     # Reading data
     #
 
-    previous_cd = sort!(filter(x -> occursin("cd", x) && occursin(".dat", x), readdir("./data")))[end]
-    previous_version = previous_cd[5:9]
-    if previous_version == "$version"
-        previous_cd = sort!(filter(x -> occursin("cd", x) && occursin(".dat", x), readdir("./data")))[end-1]
-    end
-    previous_cd = "./data/"*previous_cd
+    previous_cd, previous_version_cd = pick_previous_data_file("cd", version)
 
     data_cd = readdlm(previous_cd, comments=true, comment_char=('#'))
     println(" Previous: $previous_cd ")
 
-    previous_cv = sort!(filter(x -> occursin("cv", x) && occursin(".dat", x), readdir("./data")))[end]
-    previous_version = previous_cv[5:9]
-    if previous_version == "$version"
-        previous_cv = sort!(filter(x -> occursin("cv", x) && occursin(".dat", x), readdir("./data")))[end-1]
-    end
-    previous_cv = "./data/"*previous_cv
+    previous_cv, previous_version_cv = pick_previous_data_file("cv", version)
     data_cv = readdlm(previous_cv, comments=true, comment_char=('#'))
     println(" Previous: $previous_cv ")
 
@@ -218,7 +228,7 @@ function run_benchmark(;
             end
             t = @b florpi(N=($n), cd=false, parallel=true, nbatches=nbatches)
             new_cv[i, 5] = t.time
-            print_line(n, t.time, prev, previous_version)
+            print_line(n, t.time, prev, string(previous_version_cv))
         end
     end
 
@@ -234,7 +244,7 @@ function run_benchmark(;
             end
             t = @b florpi(N=($n), cd=true, parallel=true, nbatches=nbatches)
             new_cd[i, 5] = t.time
-            print_line(n, t.time, prev, previous_version)
+            print_line(n, t.time, prev, string(previous_version_cd))
         end
     end
 
@@ -253,7 +263,7 @@ function run_benchmark(;
             end
             t = @b florpi(N=($n), cd=true, parallel=false, nbatches=nbatches)
             new_cd[i, 4] = t.time
-            print_line(n, t.time, prev, previous_version)
+            print_line(n, t.time, prev, string(previous_version_cd))
         end
     end
 
@@ -269,7 +279,7 @@ function run_benchmark(;
             end
             t = @b florpi(N=($n), cd=false, parallel=false, nbatches=nbatches)
             new_cv[i, 4] = t.time
-            print_line(n, t.time, prev, previous_version)
+            print_line(n, t.time, prev, string(previous_version_cv))
         end
     end
 

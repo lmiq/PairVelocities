@@ -135,7 +135,7 @@ function plot_florpi(version, output=false)
 end
 
 function run_benchmark(;
-    output=false,
+    output=true,
     last_cd=10_000_000,
     last_cv=3_000_000,
     types=[true, true, true, true],
